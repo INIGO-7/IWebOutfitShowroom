@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block titulo %} Empleados del departamento {% endblock %}
+{% load static %}
+{% block contenido %}
+<h2>Lista de empleados</h2>
+<h3>{{ departamento.nombre }}</h3>
+{% if empleados %}
+	<ul>
+	{% for e in empleados %}
+		<li>
+		    <a href="/appEmpresaDjango/empleados/{{ e.id }}">{{ e.nombre}}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+<p>No hay empleados creados.</p>
+{% endif %}
+{% endblock %}
