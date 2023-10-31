@@ -60,12 +60,12 @@ class Migration(migrations.Migration):
                     "departamento",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="appEmpresaDjango.departamento",
+                        to="appOutfitShowroom.departamento",
                     ),
                 ),
                 (
                     "habilidades",
-                    models.ManyToManyField(to="appEmpresaDjango.habilidad"),
+                    models.ManyToManyField(to="appOutfitShowroom.habilidad"),
                 ),
             ],
         ),

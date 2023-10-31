@@ -18,14 +18,14 @@
             {{ empleado.antiguedad}}
         </li>
         <li>
-            <a href="/appEmpresaDjango/departamentos/{{ empleado.departamento.id }}">{{ empleado.departamento}}</a>
+            <a href="/appOutfitShowroom/departamentos/{{ empleado.departamento.id }}">{{ empleado.departamento}}</a>
         </li>
     </ul>
 	<h3>Lista de habilidades</h3>
 	{% if habilidades %}
 		<ol>
 		{% for h in habilidades %}
-			<li><a href="/appEmpresaDjango/habilidades/{{ h.id }}">{{ h.nombre}}</a></li>
+			<li><a href="/appOutfitShowroom/habilidades/{{ h.id }}">{{ h.nombre}}</a></li>
 		{% endfor %}
 		</ol>
 	{% else %}
