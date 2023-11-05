@@ -1,0 +1,21 @@
+--> Estilos:
+casual - elegante - de negocios - bohemio - Vintage/retro - punk - glamour - streetwear - deportista
+
+--> Ocasiones:
+Para el trabajo - evento formal - salida casual - actividad deportiva - fiesta nocturna - 
+concierto/festival - cita romántica - evento cultural - reunión familiar
+
+--> Outfits:
+Zapatos Oxford pulidos - traje de tres piezas a medida - corbata de seda - cinturón de cuero a juego - reloj de vestir con correa de cuero.
+Nike Air Force 1 blancas - vaqueros slim fit con efecto lavado - camiseta gráfica de calidad - sudadera con capucha y cremallera - gorra de béisbol
+Zapatillas de correr de alto rendimiento - pantalones de chándal técnico ajustados - camiseta técnica transpirable de manga larga - reloj Garmin con monitor de ritmo cardíaco.
+Botas de cuero envejecido estilo Chelsea - pantalones de lino blancos - camisa henley en un tono neutro - chaleco de punto abierto - sombrero fedora de ala ancha.
+Zapatos derby de ante - pantalones chinos en color caqui - camisa de vestir sin pliegues - blazer de lana ajustado - cinturón de cuero trenzado.
+Zapatos brogue bicolor - pantalones de vestir con pliegues y vuelta en el dobladillo - camisa de mangas cortas con estampado art decó - tirantes de cuero - sombrero trilby de fieltro.
+Botas Dr. Martens negras - jeans skinny negros desgastados - camiseta de banda de rock con corte DIY - chaqueta de cuero biker con tachuelas - cinturón de cuero con cadena.
+Nike Dunk Low en un color contrastante - pantalón cargo oversized - camiseta de Santa Cruz con gráfico frontal - chaqueta bomber ligera en lugar de sudadera - reloj digital de estilo street.
+Asics Onitsuka Tiger en colores neutros - joggers de algodón slim fit en tono beige - crop top básico de algodón - cinturón de lona - chaqueta denim ligera.
+Zapatos de tacón alto - vestido bodycon metálico - bolso clutch a juego - pendientes de aro grandes - pulsera de eslabones gruesos.
+
+
+--> Hacer tipo de vestimenta: si cada prenda es un accesorio, pantalón, camiseta, camisa etc... y poder buscar por ello.
