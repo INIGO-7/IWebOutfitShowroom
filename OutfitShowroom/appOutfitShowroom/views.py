@@ -1,36 +1,53 @@
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.shortcuts import render
-from .models import Departamento, Habilidad, Empleado
+from .models import Outfit, Estilo, Ocasion, Outfit
+from django.http import HttpResponse
 
-#devuelve el listado de empresas
-def index_departamentos(request):
-	departamentos = get_list_or_404(Departamento.objects.order_by('nombre'))
-	context = {'lista_departamentos': departamentos }
-	return render(request, 'index.html', context)
+#TODO: PONER BONITO CON TEMPLATES DE HTML, ABAJO ESTA COMO DEBERÍA QUEDAR
+# EL CÓDIGO CUANDO TENGAMOS LAS PLANTILLAS
 
-#devuelve los datos de un departamento
-def show_departamento(request, departamento_id):
-	departamento = get_object_or_404(Departamento, pk=departamento_id)
-	context = {'departamento': departamento }
-	return render(request, 'detail.html', context)
+def index(request):
+	outfits = Outfit.objects.order_by('nombre')
+	output = ", ".join([o.nombre for o in outfits])
+	return HttpResponse(output)
 
-#devuelve los empelados de un departamento
-def index_empleados(request, departamento_id):
-	departamento = get_object_or_404(Departamento, pk=departamento_id)
-	empleados =  departamento.empleado_set.all()
-	context = {'departamento': departamento, 'empleados' : empleados }
-	return render(request, 'empleados.html', context)
+#devuelve los datos de un outfit
+def detail(request, outfit_id):
+	outfit = Outfit.objects.get(pk=outfit_id)
+	return HttpResponse(outfit)
 
-#devuelve los detalles de un empleado
-def show_empleado(request, empleado_id):
-	empleado = get_object_or_404(Empleado, pk=empleado_id)
-	habilidades =  empleado.habilidades.all()
-	context = { 'empleado': empleado, 'habilidades' : habilidades }
-	return render(request, 'empleado.html', context)
+# #devuelve el listado de outfits
+# def index_outfits(request):
+# 	outfits = get_list_or_404(Outfit.objects.order_by('nombre'))
+# 	context = {'lista_outfits': outfits }
+# 	return render(request, 'index.html', context)
 
-# Devuelve los detalles de una habilidad
-def show_habilidad(request, habilidad_id):
-    habilidad = get_object_or_404(Habilidad, pk=habilidad_id)
-    empleados =  habilidad.empleado_set.all()
-    context = { 'empleados': empleados, 'habilidad' : habilidad }
-    return render(request, 'habilidad.html', context)
+# #devuelve los datos de un outfit
+# def show_outfit(request, outfit_id):
+# 	outfit = get_object_or_404(Outfit, pk=outfit_id)
+# 	context = {'outfit': outfit }
+# 	return render(request, 'detail.html', context)
+
+# #devuelve el listado de estilos
+# def index_estilos(request):
+# 	estilos = get_list_or_404(Estilo.objects.order_by('nombre'))
+# 	context = {'lista_estilos': estilos }
+# 	return render(request, 'index.html', context)
+
+# #devuelve los datos de un estilo
+# def show_estilo(request, estilo_id):
+# 	estilo = get_object_or_404(Estilo, pk=estilo_id)
+# 	context = {'estilo': estilo }
+# 	return render(request, 'detail.html', context)
+
+# #devuelve el listado de ocasiones
+# def index_ocasiones(request):
+# 	ocasiones = get_list_or_404(Ocasion.objects.order_by('nombre'))
+# 	context = {'lista_ocasiones': ocasiones }
+# 	return render(request, 'index.html', context)
+
+# #devuelve los datos de una ocasion
+# def show_ocasion(request, ocasion_id):
+# 	ocasion = get_object_or_404(Ocasion, pk=ocasion_id)
+# 	context = {'ocasion': ocasion }
+# 	return render(request, 'detail.html', context)
