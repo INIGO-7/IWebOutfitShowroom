@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block titulo %} Ocasiones disponibles {% endblock %}
+{% load static %}
+{% block contenido %}
+<h2>Lista de ocasiones</h2>
+{% if lista_ocasiones %}
+	<ul>
+	{% for o in lista_ocasiones %}
+		<li>
+		    <a href="/appOutfitShowroom/empleados/{{ o.id }}">{{ o.nombre}}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+<p>No hay ocasiones creadas.</p>
+{% endif %}
+{% endblock %}

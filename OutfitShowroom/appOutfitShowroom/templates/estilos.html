@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block titulo %} Estilos disponibles {% endblock %}
+{% load static %}
+{% block contenido %}
+<h2>Lista de estilos</h2>
+{% if lista_estilos %}
+	<ul>
+	{% for e in lista_estilos %}
+		<li>
+		    <a href="/appOutfitShowroom/empleados/{{ e.id }}">{{ e.nombre}}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+<p>No hay estilos creados.</p>
+{% endif %}
+{% endblock %}
