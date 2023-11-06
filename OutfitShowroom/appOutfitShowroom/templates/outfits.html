@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block titulo %} Outfits disponibles {% endblock %}
+{% load static %}
+{% block contenido %}
+<h2>Lista de outfits</h2>
+{% if outfits %}
+	<ul>
+	{% for o in outfits %}
+		<li>
+		    <a href="/appOutfitShowroom/outfit/{{ o.id }}">{{ o.nombre}}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+<p>No hay outfits creadas.</p>
+{% endif %}
+{% endblock %}

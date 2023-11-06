@@ -4,11 +4,11 @@
 {% load static %}
 {% block contenido %}
 <h2>Lista de estilos</h2>
-{% if lista_estilos %}
+{% if estilos %}
 	<ul>
-	{% for e in lista_estilos %}
+	{% for e in estilos %}
 		<li>
-		    <a href="/appOutfitShowroom/empleados/{{ e.id }}">{{ e.nombre}}</a>
+		    <a href="/appOutfitShowroom/estilos/{{ e.id }}">{{ e.nombre}}</a>
 		</li>
 	{% endfor %}
 	</ul>

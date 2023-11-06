@@ -11,15 +11,25 @@ def index(request):
 	output = ", ".join([o.nombre for o in outfits])
 	return HttpResponse(output)
 
-#devuelve los datos de un outfit
-def detail(request, outfit_id):
-	outfit = Outfit.objects.get(pk=outfit_id)
-	return HttpResponse(outfit)
-
 def lista_ocasiones(request):
 	ocasiones = Ocasion.objects.all()
 	context = {'ocasiones': ocasiones}
 	return render(request, 'ocasiones.html', context)
+
+def lista_estilos(request):
+	estilos = Estilo.objects.all()
+	context = {'estilos': estilos}
+	return render(request, 'estilos.html', context)
+
+def lista_outfits(request):
+	outfits = Outfit.objects.all()
+	context = {'outfits': outfits}
+	return render(request, 'outfits.html', context)
+
+#devuelve los datos de un outfit
+def detail(request, outfit_id):
+	outfit = Outfit.objects.get(pk=outfit_id)
+	return HttpResponse(outfit)
 
 # #devuelve el listado de outfits
 # def index_outfits(request):
