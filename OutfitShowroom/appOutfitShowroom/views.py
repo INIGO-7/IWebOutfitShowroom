@@ -16,6 +16,11 @@ def detail(request, outfit_id):
 	outfit = Outfit.objects.get(pk=outfit_id)
 	return HttpResponse(outfit)
 
+def lista_ocasiones(request):
+	ocasiones = Ocasion.objects.all()
+	context = {'ocasiones': ocasiones}
+	return render(request, 'ocasiones.html', context)
+
 # #devuelve el listado de outfits
 # def index_outfits(request):
 # 	outfits = get_list_or_404(Outfit.objects.order_by('nombre'))

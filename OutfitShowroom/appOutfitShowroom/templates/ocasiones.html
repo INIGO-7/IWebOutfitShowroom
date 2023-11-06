@@ -4,9 +4,9 @@
 {% load static %}
 {% block contenido %}
 <h2>Lista de ocasiones</h2>
-{% if lista_ocasiones %}
+{% if ocasiones %}
 	<ul>
-	{% for o in lista_ocasiones %}
+	{% for o in ocasiones %}
 		<li>
 		    <a href="/appOutfitShowroom/empleados/{{ o.id }}">{{ o.nombre}}</a>
 		</li>
