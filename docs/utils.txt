@@ -1,0 +1,13 @@
+- create a super user:
+> python manage.py createsuperuser
+
+
+Python shell --> python manage.py shell (run each line one by one):
+
+- list all users
+from django.contrib.auth.models import User
+print(User.objects.all())
+
+- delete certain user
+from django.contrib.auth.models import User
+User.objects.filter(username='username', is_superuser=True).delete()
