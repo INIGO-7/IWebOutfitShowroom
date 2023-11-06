@@ -26,8 +26,16 @@ def lista_outfits(request):
 	context = {'outfits': outfits}
 	return render(request, 'outfits.html', context)
 
-#devuelve los datos de un outfit
-def detail(request, outfit_id):
+#devuelve los datos de un outfit, ocasion o estilo
+def ocasion(request, ocasion_id):
+	outfit = Ocasion.objects.get(pk=ocasion_id)
+	return HttpResponse(outfit)
+
+def estilo(request, estilo_id):
+	outfit = Estilo.objects.get(pk=estilo_id)
+	return HttpResponse(outfit)
+
+def outfit(request, outfit_id):
 	outfit = Outfit.objects.get(pk=outfit_id)
 	return HttpResponse(outfit)
 
