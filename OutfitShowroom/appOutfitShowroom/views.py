@@ -7,56 +7,43 @@ from django.http import HttpResponse
 # EL CÓDIGO CUANDO TENGAMOS LAS PLANTILLAS
 
 def index(request):
-	outfits = Outfit.objects.order_by('nombre')
-	output = ", ".join([o.nombre for o in outfits])
-	return HttpResponse(output)
+	context = {'titulo_pagina': "Inicio"}
+	return render(request, 'index.html', context)
 
 def lista_ocasiones(request):
 	ocasiones = Ocasion.objects.all()
-	context = {'ocasiones': ocasiones}
+	context = {'titulo_pagina': "Ocasiones", 'ocasiones': ocasiones}
 	return render(request, 'ocasiones.html', context)
 
 def lista_estilos(request):
 	estilos = Estilo.objects.all()
-	context = {'estilos': estilos}
+	context = {'titulo_pagina': "Estilos", 'estilos': estilos}
 	return render(request, 'estilos.html', context)
 
 def lista_outfits(request):
 	outfits = Outfit.objects.all()
-	context = {'outfits': outfits}
+	context = {'titulo_pagina': "Outfits", 'outfits': outfits}
 	return render(request, 'outfits.html', context)
 
 #devuelve los datos de un outfit, ocasion o estilo
-def ocasion(request, ocasion_id):
-	outfit = Ocasion.objects.get(pk=ocasion_id)
-	return HttpResponse(outfit)
-
-def estilo(request, estilo_id):
-	outfit = Estilo.objects.get(pk=estilo_id)
-	return HttpResponse(outfit)
-
-def outfit(request, outfit_id):
-	outfit = Outfit.objects.get(pk=outfit_id)
-	return HttpResponse(outfit)
 
 def detalles_estilo(request, estilo_id):
 	estilo = Estilo.objects.get(pk=estilo_id)
 	outfits = Outfit.objects.filter(estilo=estilo_id)
-	context = {'estilo': estilo, 'outfits': outfits}
+	context = {'titulo_pagina': "Detalles del estilo", 'estilo': estilo, 'outfits': outfits}
 	return render(request, 'estilo.html', context)
 
 def detalles_ocasion(request, ocasion_id):
 	ocasion = Ocasion.objects.get(pk=ocasion_id)
 	outfits = Outfit.objects.filter(ocasion=ocasion_id)
-	context = {'ocasion': ocasion, 'outfits': outfits}
+	context = {'titulo_pagina': "Detalles de la ocasión", 'ocasion': ocasion, 'outfits': outfits}
 	return render(request, 'ocasion.html', context)
 
 def detalles_outfit(request, outfit_id):
 	outfit = Outfit.objects.get(pk=outfit_id)
 	ocasion = Ocasion.objects.get(pk=outfit_id)
 	estilos = Estilo.objects.filter(outfit=outfit_id)
-	
-	context = {'outfit': outfit,  'ocasion': ocasion, 'estilos': estilos}
+	context = {'titulo_pagina': "Detalles del outfit", 'outfit': outfit,  'ocasion': ocasion, 'estilos': estilos}
 	return render(request, 'outfit.html', context)
 
 
