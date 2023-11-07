@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titulo %} Detalles del estilo {% endblock %}
+{% load static %}
+{% block contenido %}
+<h2>Detalles del estilo</h2>
+
+
+{% if estilo %}
+    <h3>{{ estilo.nombre}}</h3>
+	<h3>Lista de outfits</h3>
+	{% if outfits %}
+		<ol>
+		{% for e in outfits %}
+			<li>
+				<a href="{% url 'outfit' e.id %}">{{ e.nombre}}</a>
+			</li>
+		{% endfor %}
+		</ol>
+	{% else %}
+		<p>No tiene outfits asociados.</p>
+	{% endif %}
+{% else %}
+    <p>No existe este estilo.</p>
+{% endif %}
+
+
+{% endblock %}

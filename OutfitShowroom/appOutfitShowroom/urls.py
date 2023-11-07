@@ -10,5 +10,5 @@ urlpatterns = [
     path('outfits', views.lista_outfits, name='lista_outfits'),
     path('outfit/<int:outfit_id>', views.outfit, name='outfit'),
     path('ocasion/<int:ocasion_id>', views.ocasion, name='ocasiones'),
-    path('estilo/<int:estilo_id>', views.estilo, name='estilo')
+    path('estilo/<int:estilo_id>', views.detalles_estilo, name='estilo')
 ]

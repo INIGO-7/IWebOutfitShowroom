@@ -39,6 +39,12 @@ def outfit(request, outfit_id):
 	outfit = Outfit.objects.get(pk=outfit_id)
 	return HttpResponse(outfit)
 
+def detalles_estilo(request, estilo_id):
+	estilo = Estilo.objects.get(pk=estilo_id)
+	outfits = Outfit.objects.filter(estilo=estilo_id)
+	context = {'estilo': estilo, 'outfits': outfits}
+	return render(request, 'estilo.html', context)
+
 # #devuelve el listado de outfits
 # def index_outfits(request):
 # 	outfits = get_list_or_404(Outfit.objects.order_by('nombre'))
@@ -55,13 +61,13 @@ def outfit(request, outfit_id):
 # def index_estilos(request):
 # 	estilos = get_list_or_404(Estilo.objects.order_by('nombre'))
 # 	context = {'lista_estilos': estilos }
-# 	return render(request, 'index.html', context)
+# 	return render(request, 'outfit.html', context)
 
 # #devuelve los datos de un estilo
 # def show_estilo(request, estilo_id):
 # 	estilo = get_object_or_404(Estilo, pk=estilo_id)
 # 	context = {'estilo': estilo }
-# 	return render(request, 'detail.html', context)
+# 	return render(request, 'outfit.html', context)
 
 # #devuelve el listado de ocasiones
 # def index_ocasiones(request):
