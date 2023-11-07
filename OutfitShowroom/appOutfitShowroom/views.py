@@ -45,6 +45,13 @@ def detalles_estilo(request, estilo_id):
 	context = {'estilo': estilo, 'outfits': outfits}
 	return render(request, 'estilo.html', context)
 
+def detalles_ocasion(request, ocasion_id):
+	ocasion = Ocasion.objects.get(pk=ocasion_id)
+	outfits = Outfit.objects.filter(ocasion=ocasion_id)
+	context = {'ocasion': ocasion, 'outfits': outfits}
+	return render(request, 'ocasion.html', context)
+
+
 # #devuelve el listado de outfits
 # def index_outfits(request):
 # 	outfits = get_list_or_404(Outfit.objects.order_by('nombre'))
