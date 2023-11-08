@@ -6,7 +6,7 @@ body, h1, h2, p, ul, li {
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f9f6f8;
     color: #333;
 }
 
@@ -17,8 +17,13 @@ body {
 }
 
 h1 {
-    font-size: 36px;
-    color: #ff5733;
+    font-size: 50px;
+    color: #4a4136;
+}
+
+h2 {
+    font-size: 32px;
+    color: #7c766d;
 }
 
 #nav {
@@ -27,6 +32,29 @@ h1 {
     text-align: center;
     padding: 10px;
 }
+
+ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+li {
+    display: inline;
+    margin-right: 20px;
+
+}
+
+a {
+    color: #637388;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #303a47;
+    text-decoration: underline;
+  }
+
+
 
 #nav ul {
     list-style: none;
