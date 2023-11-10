@@ -33,10 +33,10 @@ h2 {
 
 nav a {
   text-decoration: none;
-  padding: 10px;
+  padding: 12px;
   border-radius: 20px;
   background-color: #DDDDDD;
-  color: #33333; /* Color del texto, ajusta según sea necesario */
+  color: #333333; /* Color del texto, ajusta según sea necesario */
 }
 
 nav a:hover {
@@ -94,6 +94,7 @@ nav a:hover {
 ul {
     list-style: none;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 li {
