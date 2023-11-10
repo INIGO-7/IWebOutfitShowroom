@@ -4,16 +4,16 @@
 <h2>Bienvenidos a OutfitShowRoom!</h2>
 <!-- TODO: PONER LA LISTA DE LOS OUTFITS MAS RECIENTES -->
 
-{% if ultimos_estilos %}
-	<ul>
-	{% for estilo in ultimos_estilos %}
-		<li>
-		    <a href="/appOutfitShowroom/estilo/{{ e.id }}">{{ e.nombre}}</a>
-		</li>
+{% if ultimos_outfits %}
+	{% for outfit in ultimos_outfits %}
+		<p>
+		    <a href="/appOutfitShowroom/outfit/{{ outfit.id }}">{{ outfit.nombre}}</a>
+			{% load static %}
+			<img alt="{{ outfit.imagen.name }}" src="{% static outfit.imagen.name %}" />
+		</p>
 	{% endfor %}
-	</ul>
 {% else %}
-<p>No hay estilos creados.</p>
+<p>No hay outfits creados.</p>
 {% endif %}
 
 {% endblock %}
