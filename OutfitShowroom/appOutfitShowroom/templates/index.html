@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 {% block contenido %}
 
-<h2>Bienvenidos a OutfitShowRoom!</h2>
+<h2  class="initial_title" >Bienvenidos a OutfitShowRoom!</h2>
 <!-- TODO: PONER LA LISTA DE LOS OUTFITS MAS RECIENTES -->
 
-{% if ultimos_outfits %}
-	{% for outfit in ultimos_outfits %}
-		<p>
-		    <a href="/appOutfitShowroom/outfit/{{ outfit.id }}">{{ outfit.nombre}}</a>
-			{% load static %}
-			<img alt="{{ outfit.imagen.name }}" src="{% static outfit.imagen.name %}" />
-		</p>
-	{% endfor %}
-{% else %}
-<p>No hay outfits creados.</p>
-{% endif %}
+<div class = "first_display">
+	{% if ultimos_outfits %}
+	<table style="width: 100%;">
+		{% for outfit in ultimos_outfits %}
+		<tr>
+			<td style="text-align: center;">
+				<a href="/appOutfitShowroom/outfit/{{ outfit.id }}">{{ outfit.nombre }}</a><br><br>
+				{% load static %}
+				<a href="/appOutfitShowroom/outfit/{{ outfit.id }}"><img alt="{{ outfit.imagen.name }}" src="{% static outfit.imagen.name %}" style="max-width: 100%; height: auto;"></a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+	<p>No hay outfits creados.</p>
+	{% endif %}
+</div>
 
 {% endblock %}

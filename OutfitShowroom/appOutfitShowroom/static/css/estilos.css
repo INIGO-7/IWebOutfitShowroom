@@ -24,6 +24,11 @@ h2 {
     color: #7c766d;
 }
 
+h2.initial_title{
+    font-size: 50px;
+    text-align: center;
+}
+
 #header {
   background-color: #CCCCCC; /* Light gray background color */
   border-radius: 10px; /* Adjust the border-radius for rounded corners */
@@ -84,6 +89,27 @@ nav a:hover {
   background-color: #c2c2c2;
 }
 
+
+.first_display table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.first_display td {
+    padding: 10px;
+    padding-bottom: 50px;
+}
+
+.first_display td a {
+    font-style: italic;
+    font-size: 20px;
+}
+
+.first_display td img {
+    max-width: 60px; /* Adjust the max-width as per your preference */
+    height: auto;
+}
 
 ul {
     list-style: none;
