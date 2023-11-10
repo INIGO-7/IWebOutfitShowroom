@@ -2,6 +2,11 @@
 > python manage.py createsuperuser
 
 
+- migrations
+> python manage.py makemigrations appEmpresaDjango
+> python manage.py migrate
+
+
 Python shell --> python manage.py shell (run each line one by one):
 
 - list all users
