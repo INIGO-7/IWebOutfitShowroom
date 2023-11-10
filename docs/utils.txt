@@ -3,7 +3,7 @@
 
 
 - migrations
-> python manage.py makemigrations appEmpresaDjango
+> python manage.py makemigrations appOutfitShowroom
 > python manage.py migrate
 
 
@@ -16,3 +16,8 @@ print(User.objects.all())
 - delete certain user
 from django.contrib.auth.models import User
 User.objects.filter(username='username', is_superuser=True).delete()
+
+- populate outfits table
+from appOutfitShowroom.models import Outfit, Ocasion, Estilo
+ocasion = Ocasion.objects.get(nombre="")
+estilo = Estilo.objects.get(nombre="")

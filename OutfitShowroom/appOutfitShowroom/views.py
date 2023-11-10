@@ -3,10 +3,17 @@ from django.shortcuts import render
 from .models import Outfit, Estilo, Ocasion, Outfit
 from django.http import HttpResponse
 
-#TODO: PONER BONITO CON TEMPLATES DE HTML, ABAJO ESTA COMO DEBERÍA QUEDAR
-# EL CÓDIGO CUANDO TENGAMOS LAS PLANTILLAS
 
 def index(request):
+	# ocasiones = Ocasion.objects.all()
+	# ultimos_outfits_porocasion = []
+
+	# for o in ocasiones:
+	# 	ultimos_outfits_porocasion = Outfit.
+	
+	# context = {'titulo_pagina': "Inicio", 'ocasiones':  ocasiones, 'ultimos_estilos': ultimos_outfits_porocasion}
+	# return render(request, 'index.html', context)
+
 	context = {'titulo_pagina': "Inicio"}
 	return render(request, 'index.html', context)
 
@@ -45,40 +52,3 @@ def detalles_outfit(request, outfit_id):
 	estilos = Estilo.objects.filter(outfit=outfit_id)
 	context = {'titulo_pagina': "Detalles del outfit", 'outfit': outfit,  'ocasion': ocasion, 'estilos': estilos}
 	return render(request, 'outfit.html', context)
-
-
-# #devuelve el listado de outfits
-# def index_outfits(request):
-# 	outfits = get_list_or_404(Outfit.objects.order_by('nombre'))
-# 	context = {'lista_outfits': outfits }
-# 	return render(request, 'index.html', context)
-
-# #devuelve los datos de un outfit
-# def show_outfit(request, outfit_id):
-# 	outfit = get_object_or_404(Outfit, pk=outfit_id)
-# 	context = {'outfit': outfit }
-# 	return render(request, 'detail.html', context)
-
-# #devuelve el listado de estilos
-# def index_estilos(request):
-# 	estilos = get_list_or_404(Estilo.objects.order_by('nombre'))
-# 	context = {'lista_estilos': estilos }
-# 	return render(request, 'outfit.html', context)
-
-# #devuelve los datos de un estilo
-# def show_estilo(request, estilo_id):
-# 	estilo = get_object_or_404(Estilo, pk=estilo_id)
-# 	context = {'estilo': estilo }
-# 	return render(request, 'outfit.html', context)
-
-# #devuelve el listado de ocasiones
-# def index_ocasiones(request):
-# 	ocasiones = get_list_or_404(Ocasion.objects.order_by('nombre'))
-# 	context = {'lista_ocasiones': ocasiones }
-# 	return render(request, 'index.html', context)
-
-# #devuelve los datos de una ocasion
-# def show_ocasion(request, ocasion_id):
-# 	ocasion = get_object_or_404(Ocasion, pk=ocasion_id)
-# 	context = {'ocasion': ocasion }
-# 	return render(request, 'detail.html', context)

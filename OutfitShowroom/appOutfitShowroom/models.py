@@ -14,7 +14,8 @@ class Ocasion(models.Model):
 
 class Outfit(models.Model):
     def __str__(self):
-        return f'Nombre: {self.nombre}, Ocasion: {self.ocasion}, Estilo: {self.estilo}, Precio: {self.precio}€'
+        estilos = ', '.join([e.nombre for e in self.estilo.all()])
+        return f'Nombre: {self.nombre}, Ocasion: {self.ocasion}, Estilo: {estilos}, Precio: {self.precio}€'
     
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField(max_length=700)
