@@ -6,9 +6,26 @@
         <title>{{ titulo_pagina }}</title>
     </head>
     <body>
-        <div id="content">
-	     <h1>Outfit Showroom</h1>
+        <div id="header">
+	     <h1><a href="/appOutfitShowroom">Outfit Showroom</a></h1>
             <br>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/appOutfitShowroom/outfits">Encuentra tus outfits!</a>
+                    </li>
+                    <li>
+                        <a href="/appOutfitShowroom/estilos">Estilos destacados</a>
+                    </li>
+                    <li>
+                        <a href="/appOutfitShowroom/ocasiones">Busca tus prendas </a>
+                    </li>
+                </ul>
+            </nav>
+
+
+        </div>
+        <div id = "content">
             {% block contenido %}{% endblock %}
         </div>
         <div id="references">

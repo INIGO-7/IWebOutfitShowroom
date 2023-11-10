@@ -10,11 +10,9 @@ body {
     color: #333;
 }
 
-#content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+
+
+
 
 h1 {
     font-size: 70px;
@@ -26,12 +24,48 @@ h2 {
     color: #7c766d;
 }
 
-#nav {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
+#header {
+  background-color: #CCCCCC; /* Light gray background color */
+  border-radius: 10px; /* Adjust the border-radius for rounded corners */
+  padding: 20px; /* Add padding for content inside the element */
+  margin: 20px 20px 20px 20px; /* Add margin for spacing around the element */
 }
+
+nav a {
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #DDDDDD;
+  color: #33333; /* Color del texto, ajusta según sea necesario */
+}
+
+nav a:hover {
+
+    color: #303a47;
+    text-decoration: underline;
+
+  }
+
+#nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+#content {
+    background-color: #CCCCCC;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
 
 ul {
     list-style: none;
@@ -49,34 +83,15 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: #303a47;
-    text-decoration: underline;
-  }
 
 
 
-#nav ul {
-    list-style: none;
-}
 
-#nav li {
-    display: inline;
-    margin-right: 20px;
-}
 
-#nav a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-}
 
-#block-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+
+
+
 
 #table_container table {
   width: 80%;
@@ -96,3 +111,4 @@ a:hover {
 #table_container tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
