@@ -17,6 +17,9 @@ class Outfit(models.Model):
         return f'Nombre: {self.nombre}, Ocasion: {self.ocasion}, Estilo: {self.estilo}, Precio: {self.precio}€'
     
     nombre = models.CharField(max_length=200)
-    ocasion = models.ManyToManyField(Ocasion)
+    descripcion = models.TextField(max_length=700)
+    ocasion = models.ForeignKey(Ocasion, on_delete=models.CASCADE)
     estilo = models.ManyToManyField(Estilo)
     precio = models.IntegerField(default=0)
+    imagen = models.ImageField(upload_to='img',blank=True,null=True,verbose_name='Image')
+    fecha = models.DateTimeField(auto_now_add=True)
