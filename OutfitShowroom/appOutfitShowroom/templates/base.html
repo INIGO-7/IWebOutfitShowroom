@@ -7,30 +7,28 @@
         <title>{{ titulo_pagina }}</title>
     </head>
     <body>
-        <div id="header">
-	     <h1><a href="/appOutfitShowroom">Outfit Showroom</a></h1>
+        <header>
+	     <h1><a href="{% url 'pagina_principal' %}">Outfit Showroom</a></h1>
             <br>
             <nav>
                 <ul>
                     <li>
-                        <a href="/appOutfitShowroom/outfits">Encuentra tus outfits!</a>
+                        <a href="{% url 'outfits' %}">Encuentra tus outfits!</a>
                     </li>
                     <li>
-                        <a href="/appOutfitShowroom/estilos">Estilos destacados</a>
+                        <a href="{% url 'estilos' %}">Estilos destacados</a>
                     </li>
                     <li>
-                        <a href="/appOutfitShowroom/ocasiones">Busca tus prendas </a>
+                        <a href="{% url 'ocasiones' %}">Buscar prendas por ocasi&oacute;n </a>
                     </li>
                 </ul>
             </nav>
-
-
-        </div>
-        <div id = "content">
+        </header>
+        <main>
             {% block contenido %}{% endblock %}
-        </div>
+        </main>
         <footer>
-            <div id="footer_authors">
+            <div class="footer_authors">
                 <ul>
                     <li>Unai Igartua</li>
                     <li>Jorge Alcorta</li>
@@ -38,10 +36,10 @@
                     <li>Iñigo Fernández-Sopeña</li>
                 </ul>
             </div>
-            <div id="footer_links">
+            <div class="footer_links">
                 <ul>
-                    <li><a href="https://github.com/INIGO-7/IWebOutfitShowroom">GitHub</a></li>
-                    <li><a href="https://www.deusto.es/">Deusto</a></li>
+                    <li><a target="_blank" href="https://github.com/INIGO-7/IWebOutfitShowroom">GitHub</a></li>
+                    <li><a target="_blank" href="https://www.deusto.es/">Deusto</a></li>
                 </ul>
             </div>
         </footer>

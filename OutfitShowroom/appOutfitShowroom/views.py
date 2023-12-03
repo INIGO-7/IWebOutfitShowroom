@@ -1,57 +1,78 @@
-from django.shortcuts import get_object_or_404, get_list_or_404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Outfit, Estilo, Ocasion, Outfit
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.db.models import Max
 
 
 def index(request):
 
-	# Get the latest outfit date for each ocasion
-	ultimas_fechas_outfits = Outfit.objects.values('ocasion').annotate(latest_date=Max('fecha'))
+	# Obtiene los outfits mas recientemente añadidos por ocasion
+	ultimos_outfits = (
+		Outfit.objects.raw('SELECT * FROM( SELECT * FROM appOutfitShowroom_Outfit ORDER BY fecha DESC) GROUP BY ocasion_id ')
+	)
 
-	# Now, get the latest outfit for each ocasion
-	ultimos_outfits_porocasion = []
-	for outfit_date in ultimas_fechas_outfits:
-		latest_outfit = Outfit.objects.filter(ocasion=outfit_date['ocasion'], fecha=outfit_date['latest_date']).first()
-		if latest_outfit:
-			ultimos_outfits_porocasion.append(latest_outfit)
-	
-	context = {'titulo_pagina': "Inicio", 'ultimos_outfits': ultimos_outfits_porocasion}
+	context = {
+		'titulo_pagina': "Inicio",
+		'ultimos_outfits': ultimos_outfits
+	}
 	return render(request, 'index.html', context)
 
-def lista_ocasiones(request):
-	ocasiones = Ocasion.objects.all()
-	context = {'titulo_pagina': "Ocasiones", 'ocasiones': ocasiones}
+def ocasiones(request):
+	ocasiones = get_list_or_404(Ocasion.objects.all())
+
+	context = {
+		'titulo_pagina': "Ocasiones",
+		'ocasiones': ocasiones
+	}
 	return render(request, 'ocasiones.html', context)
 
-def lista_estilos(request):
-	estilos = Estilo.objects.all()
-	context = {'titulo_pagina': "Estilos", 'estilos': estilos}
+def estilos(request):
+	estilos = get_list_or_404(Estilo.objects.all())
+
+	context = {
+		'titulo_pagina': "Estilos",
+		'estilos': estilos
+	}
 	return render(request, 'estilos.html', context)
 
-def lista_outfits(request):
-	outfits = Outfit.objects.all()
-	context = {'titulo_pagina': "Outfits", 'outfits': outfits}
+def outfits(request):
+	outfits = get_list_or_404(Outfit.objects.all())
+
+	context = {
+		'titulo_pagina': 'Outfits',
+		'outfits': outfits
+	}
 	return render(request, 'outfits.html', context)
 
 #devuelve los datos de un outfit, ocasion o estilo
 
-def detalles_estilo(request, estilo_id):
-	estilo = Estilo.objects.get(pk=estilo_id)
-	outfits = Outfit.objects.filter(estilo=estilo_id)
-	context = {'titulo_pagina': "Detalles del estilo", 'estilo': estilo, 'outfits': outfits}
+def detalle_estilo(request, estilo_id):
+	estilo = get_object_or_404(Estilo, pk=estilo_id)
+
+	context = {
+		'titulo_pagina': "Detalles del estilo", 
+		'estilo': estilo, 
+		'outfits': estilo.outfit_set.all()
+	}
 	return render(request, 'estilo.html', context)
 
-def detalles_ocasion(request, ocasion_id):
-	ocasion = Ocasion.objects.get(pk=ocasion_id)
-	outfits = Outfit.objects.filter(ocasion=ocasion_id)
-	context = {'titulo_pagina': "Detalles de la ocasión", 'ocasion': ocasion, 'outfits': outfits}
+def detalle_ocasion(request, ocasion_id):
+	ocasion = get_object_or_404(Ocasion, pk=ocasion_id)
+
+	context = {
+		'titulo_pagina': "Detalles de la ocasión",
+		'ocasion': ocasion,
+		'outfits': ocasion.outfit_set.all()
+	}
 	return render(request, 'ocasion.html', context)
 
-def detalles_outfit(request, outfit_id):
-	outfit = Outfit.objects.get(pk=outfit_id)
-	ocasion = Ocasion.objects.get(pk=outfit_id)
-	estilos = Estilo.objects.filter(outfit=outfit_id)
-	context = {'titulo_pagina': "Detalles del outfit", 'outfit': outfit,  'ocasion': ocasion, 'estilos': estilos}
+def detalle_outfit(request, outfit_id):
+	outfit = get_object_or_404(Outfit, pk=outfit_id)
+	
+	context = {
+		'titulo_pagina': "Detalles del outfit",
+		'outfit': outfit,
+		'ocasion': outfit.ocasion,
+		'estilos': outfit.estilos.all
+	}
 	return render(request, 'outfit.html', context)

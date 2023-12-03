@@ -21,6 +21,6 @@ urlpatterns = [
     #estos nombres son los dominios del proyecto, al poner http://127.0.0.1:8000/nombredominio
     #el primer path es vacio, esto es porque lleva a http://127.0.0.1:8000, sin nombre de dominio de una página adicional
     path('admin/', admin.site.urls),
-    path('appOutfitShowroom/', include('appOutfitShowroom.urls')),
+    path('', include('appOutfitShowroom.urls')),
     #path("admin/", admin.site.urls),
 ]

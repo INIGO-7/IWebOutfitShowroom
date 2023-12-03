@@ -3,52 +3,52 @@
 {% block contenido %}
 <h2>Lista de outfits</h2>
 {% if outfits %}
-<br><br>
-<div class="table_container ">
-	<table>
-		<thead>
-			<tr>
-				<th>Nombre</th>
-				<th>Estilo</th>
-				<th>Ocasion</th>
-				<th>Precio</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% if outfits %}
-				{% for o in outfits %}
-					<tr>
-						<td>
-							<a href="/appOutfitShowroom/outfit/{{ o.id }}">{{ o.nombre }}</a>
-						</td>
-						<td>
-							{% if o.estilo.all %}
-								{% for e in o.estilo.all %}
-									<a href="/appOutfitShowroom/estilo/{{ e.id }}">{{ e.nombre }}</a>
-								{% endfor %}
-							{% else %}
-								<span>No hay estilos</span>
-							{% endif %}
-						</td>
-						<td>
-							{% if o.ocasion %}
-								<a href="/appOutfitShowroom/ocasion/{{ o.ocasion.id }}">{{ o.ocasion.nombre }}</a>
-							{% else %}
-								<span>No hay ocasion</span>
-							{% endif %}
-						</td>
-						<td>{{ o.precio }}</td>
-					</tr>
-				{% endfor %}
-			{% else %}
+	<br><br>
+	<div class="table_container">
+		<table>
+			<thead>
 				<tr>
-					<td colspan="3">No hay outfits creadas.</td>
+					<th>Nombre</th>
+					<th>Estilo</th>
+					<th>Ocasion</th>
+					<th>Precio</th>
 				</tr>
-			{% endif %}
-		</tbody>		
-	</table>
-</div>
+			</thead>
+			<tbody>
+				{% if outfits %}
+					{% for o in outfits %}
+						<tr>
+							<td>
+								<a href="{% url 'detalle_outfit' o.id %}">{{ o.nombre }}</a>
+							</td>
+							<td>
+								{% if o.estilos.all %}
+									{% for e in o.estilos.all %}
+										<a href="{% url 'detalle_estilo' e.id %}">{{ e.nombre }}</a>{% if not forloop.last %}, {% endif %}
+									{% endfor %}
+								{% else %}
+									<span>No hay estilos</span>
+								{% endif %}
+							</td>
+							<td>
+								{% if o.ocasion %}
+									<a href="{% url 'detalle_ocasion' o.ocasion.id %}">{{ o.ocasion.nombre }}</a>
+								{% else %}
+									<span>No hay ocasion</span>
+								{% endif %}
+							</td>
+							<td>{{ o.precio }}</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<tr>
+						<td colspan="3">No hay outfits creadas.</td>
+					</tr>
+				{% endif %}
+			</tbody>		
+		</table>
+	</div>
 {% else %}
-<p>No hay outfits creadas.</p>
+	<p>No hay outfits creadas.</p>
 {% endif %}
 {% endblock %}

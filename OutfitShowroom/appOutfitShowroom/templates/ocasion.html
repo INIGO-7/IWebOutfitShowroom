@@ -9,9 +9,9 @@
 	<h3>Lista de outfits</h3>
 	{% if outfits %}
 		<ol>
-		{% for e in outfits %}
+		{% for o in outfits %}
 			<li>
-				<a href="{% url 'outfit' e.id %}">{{ e.nombre}}</a>
+				<a href="{% url 'detalle_outfit' o.id %}">{{ o.nombre}}</a>
 			</li>
 		{% endfor %}
 		</ol>

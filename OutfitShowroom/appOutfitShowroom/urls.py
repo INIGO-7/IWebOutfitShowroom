@@ -4,11 +4,11 @@ from . import views
 urlpatterns = [
     # '' vacío será el por defecto
     # el name es muy importante para hacer vínculos entre las páginas
-    path('', views.index, name='index'),
-    path('ocasiones', views.lista_ocasiones, name='lista_ocasiones'),
-    path('estilos', views.lista_estilos, name='lista_estilos'),
-    path('outfits', views.lista_outfits, name='lista_outfits'),
-    path('outfit/<int:outfit_id>', views.detalles_outfit, name='outfit'),
-    path('ocasion/<int:ocasion_id>', views.detalles_ocasion, name='ocasiones'),
-    path('estilo/<int:estilo_id>', views.detalles_estilo, name='estilo')
+    path('', views.index, name='pagina_principal'),
+    path('ocasiones', views.ocasiones, name='ocasiones'),
+    path('estilos', views.estilos, name='estilos'),
+    path('outfits', views.outfits, name='outfits'),
+    path('outfit/<int:outfit_id>', views.detalle_outfit, name='detalle_outfit'),
+    path('ocasion/<int:ocasion_id>', views.detalle_ocasion, name='detalle_ocasion'),
+    path('estilo/<int:estilo_id>', views.detalle_estilo, name='detalle_estilo')
 ]

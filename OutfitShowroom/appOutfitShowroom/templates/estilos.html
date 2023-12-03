@@ -6,7 +6,7 @@
 	<ul>
 	{% for e in estilos %}
 		<li>
-		    <a href="/appOutfitShowroom/estilo/{{ e.id }}">{{ e.nombre}}</a>
+			<a href="{% url 'detalle_estilo' e.id %}">{{ e.nombre}}</a>
 		</li>
 	{% endfor %}
 	</ul>

@@ -6,7 +6,7 @@
 	<ul>
 	{% for o in ocasiones %}
 		<li>
-		    <a href="/appOutfitShowroom/ocasion/{{ o.id }}">{{ o.nombre}}</a>
+		    <a href="{% url 'detalle_ocasion' o.id %}">{{ o.nombre}}</a>
 		</li>
 	{% endfor %}
 	</ul>

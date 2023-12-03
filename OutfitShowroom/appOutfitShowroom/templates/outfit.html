@@ -12,7 +12,7 @@
 		<ol>
 		{% for e in estilos %}
 			<li>
-				<a href="{% url 'estilo' e.id %}">{{ e.nombre}}</a>
+				<a href="{% url 'detalle_estilo' e.id %}">{{ e.nombre}}</a>
 			</li>
 		{% endfor %}
 		</ol>

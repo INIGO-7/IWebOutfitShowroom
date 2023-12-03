@@ -1,20 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
 {% block contenido %}
 
-<h2  class="initial_title" >Bienvenidos a OutfitShowRoom!</h2>
-<!-- TODO: PONER LA LISTA DE LOS OUTFITS MAS RECIENTES -->
+<h2 class="initial_title" >Bienvenidos a OutfitShowRoom!</h2>
 
-<div class = "first_display">
+<div class="first_display">
 	{% if ultimos_outfits %}
-	<table style="width: 100%;">
+	<table>
 		{% for outfit in ultimos_outfits %}
-		<tr>
-			<td style="text-align: center;">
-				<a href="/appOutfitShowroom/outfit/{{ outfit.id }}">{{ outfit.nombre }}</a><br><br>
-				{% load static %}
-				<a href="/appOutfitShowroom/outfit/{{ outfit.id }}"><img alt="{{ outfit.imagen.name }}" src="{% static outfit.imagen.name %}" style="max-width: 100%; height: auto;"></a>
-			</td>
-		</tr>
+			<tr>
+				<td>
+					<a href="{% url 'detalle_outfit' outfit.id %}">{{ outfit.nombre }}</a><br><br>
+					<a href="{% url 'detalle_outfit' outfit.id %}"><img alt="{{ outfit.imagen.name }}" src="{% static outfit.imagen.name %}"></a>
+				</td>
+			</tr>
 		{% endfor %}
 	</table>
 	{% else %}
