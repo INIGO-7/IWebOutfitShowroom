@@ -21,11 +21,8 @@
 	{% endif %}
     
     {% if ocasion %}
-        <h3>Ocasión:</h3>
-        <p>{{ocasion.nombre}}</p>
+        <h3>Ocasión: </h3><a href="{% url 'detalle_ocasion' ocasion.id %}">{{ocasion.nombre}}</a>
     {% endif %}
-
-
 
 {% else %}
     <p>No existe este outfit.</p>
