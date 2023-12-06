@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
+{%load i18n%}
 {% block contenido %}
-<h2>Detalles del estilo</h2>
+<h2>{% trans "Detalles del estilo" %}</h2>
 
 
 {% if estilo %}
-    <h3>{{ estilo.nombre}}</h3>
-	<h3>Lista de outfits</h3>
+    <h3>{{ estilo.get_nombre}}</h3>
+	<h3>{% trans "Lista de outfits" %}</h3>
 	{% if outfits %}
 		<ol>
 		{% for o in outfits %}
 			<li>
-				<a href="{% url 'detalle_outfit' o.id %}">{{ o.nombre}}</a>
+				<a href="{% url 'detalle_outfit' o.id %}">{{ o.get_nombre}}</a>
 			</li>
 		{% endfor %}
 		</ol>
 	{% else %}
-		<p>No tiene outfits asociados.</p>
+		<p>{% trans "No tiene outfits asociados." %}</p>
 	{% endif %}
 {% else %}
-    <p>No existe este estilo.</p>
+    <p>{% trans "No existe este estilo." %}</p>
 {% endif %}
 
 

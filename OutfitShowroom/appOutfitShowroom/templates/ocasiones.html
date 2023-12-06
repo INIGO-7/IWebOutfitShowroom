@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+{%load i18n%}
 {% block contenido %}
-<h2>Lista de ocasiones</h2>
+<h2>{% trans "Lista de ocasiones" %}</h2>
 {% if ocasiones %}
 	<ul>
 	{% for o in ocasiones %}
 		<li>
-		    <a href="{% url 'detalle_ocasion' o.id %}">{{ o.nombre}}</a>
+		    <a href="{% url 'detalle_ocasion' o.id %}">{{ o.get_nombre}}</a>
 		</li>
 	{% endfor %}
 	</ul>
 {% else %}
-<p>No hay ocasiones creadas.</p>
+<p>{% trans "No hay ocasiones creadas." %}</p>
 {% endif %}
 {% endblock %}

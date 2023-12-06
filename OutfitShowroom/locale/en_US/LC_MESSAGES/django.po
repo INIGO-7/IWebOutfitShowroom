@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 13:59+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: appOutfitShowroom/templates/base.html:18
+msgid "Encuentra tus outfits!"
+msgstr "Find your outfits!"
+
+#: appOutfitShowroom/templates/base.html:21
+msgid "Estilos destacados"
+msgstr "Featured Styles"
+
+#: appOutfitShowroom/templates/base.html:24
+msgid "Buscar prendas por ocasión"
+msgstr "Search clothes by occasion"
+
+#: appOutfitShowroom/templates/estilo.html:4
+msgid "Detalles del estilo"
+msgstr "Style Details"
+
+#: appOutfitShowroom/templates/estilo.html:9
+#: appOutfitShowroom/templates/ocasion.html:9
+#: appOutfitShowroom/templates/outfits.html:4
+msgid "Lista de outfits"
+msgstr "List of Outfits"
+
+#: appOutfitShowroom/templates/estilo.html:19
+#: appOutfitShowroom/templates/ocasion.html:19
+msgid "No tiene outfits asociados."
+msgstr "No associated outfits."
+
+#: appOutfitShowroom/templates/estilo.html:22
+msgid "No existe este estilo."
+msgstr "This style does not exist."
+
+#: appOutfitShowroom/templates/estilos.html:4
+#: appOutfitShowroom/templates/outfit.html:10
+msgid "Lista de estilos"
+msgstr "List of Styles"
+
+#: appOutfitShowroom/templates/estilos.html:14
+msgid "No hay estilos creados."
+msgstr "No styles created."
+
+#: appOutfitShowroom/templates/index.html:6
+msgid "Bienvenidos a OutfitShowRoom!"
+msgstr "Welcome to OutfitShowRoom!"
+
+#: appOutfitShowroom/templates/ocasion.html:5
+msgid "Detalles de la ocasión"
+msgstr "Occasion Details"
+
+#: appOutfitShowroom/templates/ocasion.html:22
+msgid "No existe esta ocasión."
+msgstr "This occasion does not exist."
+
+#: appOutfitShowroom/templates/ocasiones.html:4
+msgid "Lista de ocasiones"
+msgstr "List of Occasions"
+
+#: appOutfitShowroom/templates/ocasiones.html:14
+msgid "No hay ocasiones creadas."
+msgstr "No occasions created."
+
+#: appOutfitShowroom/templates/outfit.html:4
+msgid "Detalles del outfit"
+msgstr "Outfit Details"
+
+#: appOutfitShowroom/templates/outfit.html:20
+msgid "No tiene estilos asociados."
+msgstr "No associated styles."
+
+#: appOutfitShowroom/templates/outfit.html:24
+msgid "Ocasión: "
+msgstr "Occasion: "
+
+#: appOutfitShowroom/templates/outfit.html:28
+msgid "No existe este outfit."
+msgstr "This outfit does not exist."
+
+#: appOutfitShowroom/templates/outfits.html:11
+msgid "Nombre"
+msgstr "Name"
+
+#: appOutfitShowroom/templates/outfits.html:12
+msgid "Estilo"
+msgstr "Style"
+
+#: appOutfitShowroom/templates/outfits.html:13
+msgid "Ocasion"
+msgstr "Occasion"
+
+#: appOutfitShowroom/templates/outfits.html:14
+msgid "Precio"
+msgstr "Price"
+
+#: appOutfitShowroom/templates/outfits.html:30
+msgid "No hay estilos"
+msgstr "No styles"
+
+#: appOutfitShowroom/templates/outfits.html:37
+msgid "No hay ocasion"
+msgstr "No occasion"
+
+#: appOutfitShowroom/templates/outfits.html:45
+msgid "No hay outfits creadas."
+msgstr "No outfits created."
+
+#: appOutfitShowroom/templates/outfits.html:52
+msgid "No hay outfits creados."
+msgstr "No outfits created."

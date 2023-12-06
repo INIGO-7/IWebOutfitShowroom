@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{%load i18n%}
 {% block contenido %}
-<h2>Lista de outfits</h2>
+<h2>{% trans "Lista de outfits" %}</h2>
 {% if outfits %}
 	<br><br>
 	<div class="table_container">
 		<table>
 			<thead>
 				<tr>
-					<th>Nombre</th>
-					<th>Estilo</th>
-					<th>Ocasion</th>
-					<th>Precio</th>
+					<th>{% trans "Nombre" %}</th>
+					<th>{% trans "Estilo" %}</th>
+					<th>{% trans "Ocasion" %}</th>
+					<th>{% trans "Precio" %}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -19,22 +20,22 @@
 					{% for o in outfits %}
 						<tr>
 							<td>
-								<a href="{% url 'detalle_outfit' o.id %}">{{ o.nombre }}</a>
+								<a href="{% url 'detalle_outfit' o.id %}">{{ o.get_nombre }}</a>
 							</td>
 							<td>
 								{% if o.estilos.all %}
 									{% for e in o.estilos.all %}
-										<a href="{% url 'detalle_estilo' e.id %}">{{ e.nombre }}</a>{% if not forloop.last %}, {% endif %}
+										<a href="{% url 'detalle_estilo' e.id %}">{{ e.get_nombre }}</a>{% if not forloop.last %}, {% endif %}
 									{% endfor %}
 								{% else %}
-									<span>No hay estilos</span>
+									<span>{% trans "No hay estilos" %}</span>
 								{% endif %}
 							</td>
 							<td>
 								{% if o.ocasion %}
-									<a href="{% url 'detalle_ocasion' o.ocasion.id %}">{{ o.ocasion.nombre }}</a>
+									<a href="{% url 'detalle_ocasion' o.ocasion.id %}">{{ o.ocasion.get_nombre }}</a>
 								{% else %}
-									<span>No hay ocasion</span>
+									<span>{% trans "No hay ocasion" %}</span>
 								{% endif %}
 							</td>
 							<td>{{ o.precio }}</td>
@@ -42,13 +43,13 @@
 					{% endfor %}
 				{% else %}
 					<tr>
-						<td colspan="3">No hay outfits creadas.</td>
+						<td colspan="3">{% trans "No hay outfits creadas." %}</td>
 					</tr>
 				{% endif %}
 			</tbody>		
 		</table>
 	</div>
 {% else %}
-	<p>No hay outfits creadas.</p>
+	<p>{% trans "No hay outfits creados." %}</p>
 {% endif %}
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+{%load i18n%}
 {% block contenido %}
 
-<h2 class="initial_title" >Bienvenidos a OutfitShowRoom!</h2>
+<h2 class="initial_title" >{% trans "Bienvenidos a OutfitShowRoom!" %}</h2>
 
 <div class="first_display">
 	{% if ultimos_outfits %}
@@ -10,7 +11,7 @@
 		{% for outfit in ultimos_outfits %}
 			<tr>
 				<td>
-					<a href="{% url 'detalle_outfit' outfit.id %}">{{ outfit.nombre }}</a><br><br>
+					<a href="{% url 'detalle_outfit' outfit.id %}">{{ outfit.get_nombre }}</a><br><br>
 					<a href="{% url 'detalle_outfit' outfit.id %}"><img alt="{{ outfit.imagen.name }}" src="{% static outfit.imagen.name %}"></a>
 				</td>
 			</tr>

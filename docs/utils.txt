@@ -6,6 +6,9 @@
 > python manage.py makemigrations appOutfitShowroom
 > python manage.py migrate
 
+- create and compile translation files
+> django-admin makemessages -l en_US
+> django-admin compilemessages -l en_US
 
 Python shell --> python manage.py shell (run each line one by one):
 
@@ -21,3 +24,4 @@ User.objects.filter(username='username', is_superuser=True).delete()
 from appOutfitShowroom.models import Outfit, Ocasion, Estilo
 ocasion = Ocasion.objects.get(nombre="")
 estilo = Estilo.objects.get(nombre="")
+

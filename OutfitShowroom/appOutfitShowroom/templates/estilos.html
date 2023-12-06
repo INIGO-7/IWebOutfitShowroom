@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+{%load i18n%}
 {% block contenido %}
-<h2>Lista de estilos</h2>
+<h2>{% trans "Lista de estilos" %}</h2>
 {% if estilos %}
 	<ul>
 	{% for e in estilos %}
 		<li>
-			<a href="{% url 'detalle_estilo' e.id %}">{{ e.nombre}}</a>
+			<a href="{% url 'detalle_estilo' e.id %}">{{ e.get_nombre}}</a>
 		</li>
 	{% endfor %}
 	</ul>
 {% else %}
-<p>No hay estilos creados.</p>
+<p>{% trans "No hay estilos creados." %}</p>
 {% endif %}
 {% endblock %}

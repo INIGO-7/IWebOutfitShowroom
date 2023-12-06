@@ -16,11 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     #estos nombres son los dominios del proyecto, al poner http://127.0.0.1:8000/nombredominio
     #el primer path es vacio, esto es porque lleva a http://127.0.0.1:8000, sin nombre de dominio de una página adicional
     path('admin/', admin.site.urls),
-    path('', include('appOutfitShowroom.urls')),
+
     #path("admin/", admin.site.urls),
 ]
+
+
+urlpatterns += i18n_patterns(
+    path('', include('appOutfitShowroom.urls')),
+)
