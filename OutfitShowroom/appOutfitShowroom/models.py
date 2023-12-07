@@ -22,6 +22,7 @@ class Ocasion(models.Model):
     nombre_en = models.CharField(max_length=50, blank=True)
 
 class Outfit(models.Model):
+
     def __str__(self):
         return f'Nombre: {self.nombre}'
     
@@ -30,6 +31,9 @@ class Outfit(models.Model):
     
     def get_descripcion(self):
         return self.descripcion_en if get_language() == 'en' else self.descripcion
+    
+    def get_precio(self):
+        return round((self.precio * 1.08),2) if get_language() == 'en' else self.precio
     
     nombre = models.CharField(max_length=200)
     nombre_en = models.CharField(max_length=200, blank=True)

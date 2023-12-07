@@ -12,7 +12,7 @@
 					<th>{% trans "Nombre" %}</th>
 					<th>{% trans "Estilo" %}</th>
 					<th>{% trans "Ocasion" %}</th>
-					<th>{% trans "Precio" %}</th>
+					<th>{% trans "Precio €" %}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,7 +38,7 @@
 									<span>{% trans "No hay ocasion" %}</span>
 								{% endif %}
 							</td>
-							<td>{{ o.precio }}</td>
+							<td>{{ o.get_precio }}</td>
 						</tr>
 					{% endfor %}
 				{% else %}

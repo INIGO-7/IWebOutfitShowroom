@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 13:59+0100\n"
+"POT-Creation-Date: 2023-12-07 12:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,31 +29,31 @@ msgstr "Featured Styles"
 msgid "Buscar prendas por ocasión"
 msgstr "Search clothes by occasion"
 
-#: appOutfitShowroom/templates/estilo.html:4
+#: appOutfitShowroom/templates/estilo.html:5
 msgid "Detalles del estilo"
 msgstr "Style Details"
 
-#: appOutfitShowroom/templates/estilo.html:9
-#: appOutfitShowroom/templates/ocasion.html:9
-#: appOutfitShowroom/templates/outfits.html:4
+#: appOutfitShowroom/templates/estilo.html:10
+#: appOutfitShowroom/templates/ocasion.html:10
+#: appOutfitShowroom/templates/outfits.html:5
 msgid "Lista de outfits"
 msgstr "List of Outfits"
 
-#: appOutfitShowroom/templates/estilo.html:19
-#: appOutfitShowroom/templates/ocasion.html:19
+#: appOutfitShowroom/templates/estilo.html:20
+#: appOutfitShowroom/templates/ocasion.html:20
 msgid "No tiene outfits asociados."
 msgstr "No associated outfits."
 
-#: appOutfitShowroom/templates/estilo.html:22
+#: appOutfitShowroom/templates/estilo.html:23
 msgid "No existe este estilo."
 msgstr "This style does not exist."
 
-#: appOutfitShowroom/templates/estilos.html:4
-#: appOutfitShowroom/templates/outfit.html:10
+#: appOutfitShowroom/templates/estilos.html:5
+#: appOutfitShowroom/templates/outfit.html:11
 msgid "Lista de estilos"
 msgstr "List of Styles"
 
-#: appOutfitShowroom/templates/estilos.html:14
+#: appOutfitShowroom/templates/estilos.html:15
 msgid "No hay estilos creados."
 msgstr "No styles created."
 
@@ -61,66 +61,66 @@ msgstr "No styles created."
 msgid "Bienvenidos a OutfitShowRoom!"
 msgstr "Welcome to OutfitShowRoom!"
 
-#: appOutfitShowroom/templates/ocasion.html:5
+#: appOutfitShowroom/templates/ocasion.html:6
 msgid "Detalles de la ocasión"
 msgstr "Occasion Details"
 
-#: appOutfitShowroom/templates/ocasion.html:22
+#: appOutfitShowroom/templates/ocasion.html:23
 msgid "No existe esta ocasión."
 msgstr "This occasion does not exist."
 
-#: appOutfitShowroom/templates/ocasiones.html:4
+#: appOutfitShowroom/templates/ocasiones.html:5
 msgid "Lista de ocasiones"
 msgstr "List of Occasions"
 
-#: appOutfitShowroom/templates/ocasiones.html:14
+#: appOutfitShowroom/templates/ocasiones.html:15
 msgid "No hay ocasiones creadas."
 msgstr "No occasions created."
 
-#: appOutfitShowroom/templates/outfit.html:4
+#: appOutfitShowroom/templates/outfit.html:5
 msgid "Detalles del outfit"
 msgstr "Outfit Details"
 
-#: appOutfitShowroom/templates/outfit.html:20
+#: appOutfitShowroom/templates/outfit.html:21
 msgid "No tiene estilos asociados."
 msgstr "No associated styles."
 
-#: appOutfitShowroom/templates/outfit.html:24
+#: appOutfitShowroom/templates/outfit.html:25
 msgid "Ocasión: "
 msgstr "Occasion: "
 
-#: appOutfitShowroom/templates/outfit.html:28
+#: appOutfitShowroom/templates/outfit.html:29
 msgid "No existe este outfit."
 msgstr "This outfit does not exist."
 
-#: appOutfitShowroom/templates/outfits.html:11
+#: appOutfitShowroom/templates/outfits.html:12
 msgid "Nombre"
 msgstr "Name"
 
-#: appOutfitShowroom/templates/outfits.html:12
+#: appOutfitShowroom/templates/outfits.html:13
 msgid "Estilo"
 msgstr "Style"
 
-#: appOutfitShowroom/templates/outfits.html:13
+#: appOutfitShowroom/templates/outfits.html:14
 msgid "Ocasion"
 msgstr "Occasion"
 
-#: appOutfitShowroom/templates/outfits.html:14
-msgid "Precio"
-msgstr "Price"
+#: appOutfitShowroom/templates/outfits.html:15
+msgid "Precio €"
+msgstr "Price $"
 
-#: appOutfitShowroom/templates/outfits.html:30
+#: appOutfitShowroom/templates/outfits.html:31
 msgid "No hay estilos"
 msgstr "No styles"
 
-#: appOutfitShowroom/templates/outfits.html:37
+#: appOutfitShowroom/templates/outfits.html:38
 msgid "No hay ocasion"
 msgstr "No occasion"
 
-#: appOutfitShowroom/templates/outfits.html:45
+#: appOutfitShowroom/templates/outfits.html:46
 msgid "No hay outfits creadas."
 msgstr "No outfits created."
 
-#: appOutfitShowroom/templates/outfits.html:52
+#: appOutfitShowroom/templates/outfits.html:53
 msgid "No hay outfits creados."
 msgstr "No outfits created."
