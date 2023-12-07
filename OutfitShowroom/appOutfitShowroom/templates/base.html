@@ -25,6 +25,27 @@
                     </li>
                 </ul>
             </nav>
+
+            <div class="language-selector">
+                <form action="{% url 'set_language' %}" method="post" id="language-form">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <input type="hidden" name="language" id="language-input">
+                    <ul>
+                        <li>
+                            <a href="#" onclick="changeLanguage('es')">
+                                <img src="{% static 'img/es.png' %}" alt="ES" /> ES
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="changeLanguage('en')">
+                                <img src="{% static 'img/en.png' %}" alt="EN" /> EN
+                            </a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
         </header>
         <main>
             {% block contenido %}{% endblock %}
@@ -45,5 +66,15 @@
                 </ul>
             </div>
         </footer>
+
+        <!-- JAVASCRIPT -->
+        <script>
+            function changeLanguage(lang) {
+                document.getElementById('language-input').value = lang;
+                document.getElementById('language-form').submit();
+            }
+        </script>
+
+
     </body>
 </html>

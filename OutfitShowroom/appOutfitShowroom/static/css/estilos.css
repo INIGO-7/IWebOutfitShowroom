@@ -73,6 +73,30 @@ nav a {
   color: var(--accent-color); /* Color del texto, ajusta según sea necesario */
 }
 
+.language-selector {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.language-selector form {
+  margin: 0;
+}
+
+
+/* Estilos adicionales para mejorar la apariencia */
+.language-selector select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.language-selector img {
+  height: 20px; /* Ajusta esto según el tamaño deseado */
+  width: auto;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
 /*-------------------- MAIN CONTENT --------------------*/
 
 main {
