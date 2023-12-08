@@ -44,3 +44,14 @@ class Outfit(models.Model):
     precio = models.IntegerField(default=0)
     imagen = models.ImageField(upload_to='static/img',blank=True,null=True,verbose_name='Image')
     fecha = models.DateTimeField(auto_now_add=True)
+
+class Contacto(models.Model):
+
+    def __str__(self):
+        return f'{self.nombre} {self.apellido} - {self.telefono}'
+
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    fecha_nacimiento = models.DateField()
+    email = models.CharField(max_length=50)
+    telefono = models.IntegerField()

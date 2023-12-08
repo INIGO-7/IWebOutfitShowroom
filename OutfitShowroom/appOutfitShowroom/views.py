@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from .models import Outfit, Estilo, Ocasion, Outfit
+from .models import Outfit, Estilo, Ocasion, Contacto
 from django.http import HttpResponse, Http404
 from django.db.models import Max
 
@@ -43,6 +43,15 @@ def outfits(request):
 		'outfits': outfits
 	}
 	return render(request, 'outfits.html', context)
+
+def contactos(request):
+	contactos = get_list_or_404(Contacto.objects.all())
+
+	context = {
+		'titulo_pagina': 'Contactos',
+		'contactos': contactos
+	}
+	return render(request, 'contactos.html', context)
 
 #devuelve los datos de un outfit, ocasion o estilo
 

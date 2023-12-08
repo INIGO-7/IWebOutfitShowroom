@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block contenido %}
+
+{% if contactos %}
+    <ol>
+        {% for c in contactos %}
+            <li>{{ c.nombre }} {{ c.apellido }}: {{ c.telefono }} - {{ c.email }}</li>
+        {% endfor %}
+    </ol>
+{% else %}
+    <p>{% trans "No hay ningún contacto guardado." %}</p>
+{% endif %}
+
+{% endblock %}
