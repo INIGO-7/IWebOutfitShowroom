@@ -8,9 +8,9 @@
 {% if ocasion %}
     <h3>{{ ocasion.get_nombre}}</h3>
 	<h3>{% trans "Lista de outfits" %}</h3>
-	{% if outfits %}
+	{% if ocasion.outfit_set.all %}
 		<ol>
-		{% for o in outfits %}
+		{% for o in ocasion.outfit_set.all %}
 			<li>
 				<a href="{% url 'detalle_outfit' o.id %}">{{ o.get_nombre}}</a>
 			</li>
