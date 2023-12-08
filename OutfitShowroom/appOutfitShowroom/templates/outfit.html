@@ -8,6 +8,11 @@
 {% if outfit %}
     <h3>{{ outfit.get_nombre}}</h3>
 
+	<img  alt="{{ outfit.imagen.name }}"  src="{% static outfit.imagen.name %}" width="200" height="200">
+
+
+	<p>{{ outfit.get_descripcion}}</p>
+
 	<h3>{% trans "Lista de estilos" %}</h3>
 	{% if estilos %}
 		<ol>

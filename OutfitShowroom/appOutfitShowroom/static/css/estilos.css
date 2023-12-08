@@ -107,6 +107,11 @@ main {
 
 /* homepage content */
 
+.imagen-outfit {
+  width: 700px  !important;
+  height: auto;
+}
+
 .initial_title{
   font-size: 50px;
   text-align: center;
