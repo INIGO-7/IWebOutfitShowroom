@@ -3,14 +3,77 @@
 {% load i18n %}
 {% block contenido %}
 
-{% if contactos %}
-    <ol>
-        {% for c in contactos %}
-            <li>{{ c.nombre }} {{ c.apellido }}: {{ c.telefono }} - {{ c.email }}</li>
-        {% endfor %}
-    </ol>
-{% else %}
-    <p>{% trans "No hay ningún contacto guardado." %}</p>
-{% endif %}
+<div id="app">
+    {% verbatim %}
+        <p>{{ message }}</p>
+    {% endverbatim %}
+    <table class="contact-table">
+        <thead>
+            <tr>
+                <th>{% trans "Nombre" %}</th>
+                <th>{% trans "Apellido" %}</th>
+                <th>{% trans "Teléfono" %}</th>
+                <th>{% trans "Correo electrónico" %}</th>
+            </tr>
+        </thead>
+        {% verbatim %}
+        <tbody>
+            <tr v-for="contact in contacts">
+                <td>{{ contact.nombre }}</td>
+                <td>{{ contact.apellido }}</td>
+                <td>{{ contact.telefono }}</td>
+                <td>{{ contact.email }}</td>
+            </tr>
+            <tr v-if="addContactMode">
+                <td><input type="text" v-model="newContact.nombre" /></td>
+                <td><input type="text" v-model="newContact.apellido" /></td>
+                <td><input type="text" v-model="newContact.telefono" /></td>
+                <td><input type="text" v-model="newContact.email" /></td>
+            </tr>
+        </tbody>
+        {% endverbatim %}
+    </table>
+    <div class="contact-buttons">
+        <div v-if="addContactMode">
+            <button @click="addContact">{% trans "Guardar" %}</button>
+            <button @click="toggleContactMode">{% trans "Cancelar" %}</button>
+        </div>
+        <div v-else>
+            <button @click="toggleContactMode">{% trans "Añade un contacto" %}</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var contactsFromDjango = {{ contacts_json|safe }};
+    new Vue({
+        el: "#app",
+        data: {
+            contacts: contactsFromDjango,
+            addContactMode: false,
+            language: document.getElementById('language-input'),
+            newContact: {
+                nombre: '',
+                apellido: '',
+                telefono: '',
+                email: ''
+            }
+        },
+        methods: {
+            addContact() {
+                // Ideally, send a request to the server to save the new contact
+                // and only add to the local list on a successful response.
+                this.contacts.push(Object.assign({}, this.newContact));
+                this.toggleContactMode();
+            },
+
+            toggleContactMode() {
+                this.newContact = { nombre: '', apellido: '', telefono: '', email: '' }; // Reset the new contact
+                this.addContactMode = !this.addContactMode;
+            }
+        }
+    });
+</script>
 
 {% endblock %}
+

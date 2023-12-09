@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Outfit, Estilo, Ocasion, Contacto
 from django.http import HttpResponse, Http404
 from django.db.models import Max
+from django.core.serializers import serialize
+import json
 
 
 def index(request):
@@ -45,12 +47,18 @@ def outfits(request):
 	return render(request, 'outfits.html', context)
 
 def contactos(request):
-	contactos = get_list_or_404(Contacto.objects.all())
+	contacts = get_list_or_404(Contacto.objects.all())
+
+	data = serialize('json', contacts)
+	data = json.loads(data)
+
+	contacts_json = json.dumps([item['fields'] for item in data])
 
 	context = {
 		'titulo_pagina': 'Contactos',
-		'contactos': contactos
+		'contacts_json': contacts_json
 	}
+
 	return render(request, 'contactos.html', context)
 
 #devuelve los datos de un outfit, ocasion o estilo
