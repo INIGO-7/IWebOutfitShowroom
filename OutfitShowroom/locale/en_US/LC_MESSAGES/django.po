@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-07 12:03+0100\n"
+"POT-Creation-Date: 2023-12-09 15:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: appOutfitShowroom/templates/base.html:18
+#: appOutfitShowroom/templates/base.html:19
 msgid "Encuentra tus outfits!"
 msgstr "Find your outfits!"
 
-#: appOutfitShowroom/templates/base.html:21
+#: appOutfitShowroom/templates/base.html:22
 msgid "Estilos destacados"
 msgstr "Featured Styles"
 
-#: appOutfitShowroom/templates/base.html:24
+#: appOutfitShowroom/templates/base.html:25
 msgid "Buscar prendas por ocasión"
 msgstr "Search clothes by occasion"
+
+#: appOutfitShowroom/templates/base.html:28
+msgid "Contactos"
+msgstr "Contacts"
+
+#: appOutfitShowroom/templates/contactos.html:13
+#: appOutfitShowroom/templates/outfits.html:12
+msgid "Nombre"
+msgstr "Name"
+
+#: appOutfitShowroom/templates/contactos.html:14
+msgid "Apellido"
+msgstr "Last Name"
+
+#: appOutfitShowroom/templates/contactos.html:15
+msgid "Teléfono"
+msgstr "Phone"
+
+#: appOutfitShowroom/templates/contactos.html:16
+msgid "Correo electrónico"
+msgstr "Email"
+
+#: appOutfitShowroom/templates/contactos.html:38
+msgid "Guardar"
+msgstr "Save"
+
+#: appOutfitShowroom/templates/contactos.html:39
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: appOutfitShowroom/templates/contactos.html:42
+msgid "Añade un contacto"
+msgstr "Add a Contact"
 
 #: appOutfitShowroom/templates/estilo.html:5
 msgid "Detalles del estilo"
@@ -49,7 +82,7 @@ msgid "No existe este estilo."
 msgstr "This style does not exist."
 
 #: appOutfitShowroom/templates/estilos.html:5
-#: appOutfitShowroom/templates/outfit.html:11
+#: appOutfitShowroom/templates/outfit.html:16
 msgid "Lista de estilos"
 msgstr "List of Styles"
 
@@ -81,21 +114,17 @@ msgstr "No occasions created."
 msgid "Detalles del outfit"
 msgstr "Outfit Details"
 
-#: appOutfitShowroom/templates/outfit.html:21
+#: appOutfitShowroom/templates/outfit.html:26
 msgid "No tiene estilos asociados."
 msgstr "No associated styles."
 
-#: appOutfitShowroom/templates/outfit.html:25
+#: appOutfitShowroom/templates/outfit.html:30
 msgid "Ocasión: "
 msgstr "Occasion: "
 
-#: appOutfitShowroom/templates/outfit.html:29
+#: appOutfitShowroom/templates/outfit.html:34
 msgid "No existe este outfit."
 msgstr "This outfit does not exist."
-
-#: appOutfitShowroom/templates/outfits.html:12
-msgid "Nombre"
-msgstr "Name"
 
 #: appOutfitShowroom/templates/outfits.html:13
 msgid "Estilo"

@@ -179,6 +179,7 @@ main {
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 1.2em;
+  position: relative;
 }
 
 .contact-table th {
@@ -192,14 +193,13 @@ main {
 }
 
 .contact-buttons {
-  text-align: center; /* Center aligns the content */
-  margin-top: 20px; /* Adds some space above the buttons */
+  text-align: center;
+  margin-top: 20px;
 }
 
 .contact-buttons button {
-  margin: 5px; /* Adds space around each button */
+  margin: 5px;
 }
-
 
 /*-------------------- FOOTER CONTENT --------------------*/
 

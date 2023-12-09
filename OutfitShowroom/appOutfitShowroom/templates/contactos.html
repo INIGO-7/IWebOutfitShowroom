@@ -10,36 +10,42 @@
     <table class="contact-table">
         <thead>
             <tr>
+                <th v-if="editing"></th>
                 <th>{% trans "Nombre" %}</th>
                 <th>{% trans "Apellido" %}</th>
                 <th>{% trans "Teléfono" %}</th>
                 <th>{% trans "Correo electrónico" %}</th>
             </tr>
         </thead>
-        {% verbatim %}
         <tbody>
-            <tr v-for="contact in contacts">
+            <tr v-for="(contact, index) in currentContacts" :key="contact.id">
+                <td v-if="editing" class="delete-button-cell">
+                    <button class="delete-button" @click="deleteContact(index)">{% trans "Borrar" %}</button>
+                </td>
+                {% verbatim %}
                 <td>{{ contact.nombre }}</td>
                 <td>{{ contact.apellido }}</td>
                 <td>{{ contact.telefono }}</td>
                 <td>{{ contact.email }}</td>
+                {% endverbatim %}
             </tr>
-            <tr v-if="addContactMode">
-                <td><input type="text" v-model="newContact.nombre" /></td>
-                <td><input type="text" v-model="newContact.apellido" /></td>
-                <td><input type="text" v-model="newContact.telefono" /></td>
-                <td><input type="text" v-model="newContact.email" /></td>
+            <tr v-if="editing">
+                <td></td>
+                <td><input type="text" v-model="newContact.nombre" @keyup.enter="addContact"/></td>
+                <td><input type="text" v-model="newContact.apellido" @keyup.enter="addContact"/></td>
+                <td><input type="tel" v-model="newContact.telefono" @keyup.enter="addContact"/></td>
+                <td><input type="email" v-model="newContact.email" @keyup.enter="addContact"/></td>
             </tr>
         </tbody>
-        {% endverbatim %}
     </table>
     <div class="contact-buttons">
-        <div v-if="addContactMode">
-            <button @click="addContact">{% trans "Guardar" %}</button>
-            <button @click="toggleContactMode">{% trans "Cancelar" %}</button>
+        <div v-if="editing">
+            <button @click="addContact">{% trans "Añadir contacto" %}</button>
+            <button @click="saveChanges">{% trans "Guardar cambios" %}</button>
+            <button @click="cancelChanges">{% trans "Cancelar" %}</button>
         </div>
         <div v-else>
-            <button @click="toggleContactMode">{% trans "Añade un contacto" %}</button>
+            <button @click="toggleEditingMode">{% trans "Modificar contactos" %}</button>
         </div>
     </div>
 </div>
@@ -49,8 +55,9 @@
     new Vue({
         el: "#app",
         data: {
-            contacts: contactsFromDjango,
-            addContactMode: false,
+            contacts: JSON.parse(JSON.stringify(contactsFromDjango)),
+            contactsOnEdit: JSON.parse(JSON.stringify(contactsFromDjango)),
+            editing: false,
             language: document.getElementById('language-input'),
             newContact: {
                 nombre: '',
@@ -60,16 +67,40 @@
             }
         },
         methods: {
+        
             addContact() {
-                // Ideally, send a request to the server to save the new contact
-                // and only add to the local list on a successful response.
-                this.contacts.push(Object.assign({}, this.newContact));
-                this.toggleContactMode();
+                if (this.newContact.nombre && this.newContact.apellido && this.newContact.telefono && this.newContact.email) {
+                    // All fields are filled, add the contact
+                    this.contactsOnEdit.push(Object.assign({}, this.newContact));
+                    this.newContact = { nombre: '', apellido: '', telefono: '', email: '' }; // Reset the new contact
+                } else {
+                    // Not all fields are filled, show an error message or alert
+                    alert("Please fill in all fields.");
+                }
             },
 
-            toggleContactMode() {
+            saveChanges() {
+                this.contacts = JSON.parse(JSON.stringify(this.contactsOnEdit)); // Overwrite existing contacts with the new edited ones
+                this.toggleEditingMode();
+            },
+
+            cancelChanges() {
+                this.contactsOnEdit = JSON.parse(JSON.stringify(this.contacts)); // Overwrite edited contacts with the previous ones
+                this.toggleEditingMode();
+            },
+
+            deleteContact(index) {
+                this.contactsOnEdit.splice(index, 1); // Remove the contact at the specified index
+            },
+
+            toggleEditingMode() {
                 this.newContact = { nombre: '', apellido: '', telefono: '', email: '' }; // Reset the new contact
-                this.addContactMode = !this.addContactMode;
+                this.editing = !this.editing;
+            }
+        },
+        computed: {
+            currentContacts() {
+                return this.editing ? this.contactsOnEdit : this.contacts;
             }
         }
     });
