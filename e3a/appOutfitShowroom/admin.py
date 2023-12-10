@@ -64,6 +64,11 @@ class OutfitAdmin(admin.ModelAdmin):
         else:
             return 'No Image'
         
+
+class ContactoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'apellido', 'fecha_nacimiento', 'email', 'telefono')
+    search_fields = ('nombre', 'apellido', 'email', 'telefono')
+        
 class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'grupos', 'is_active', 'is_staff', 'is_superuser', 'date_joined', 'last_login')
 
@@ -97,7 +102,7 @@ class CustomGroupAdmin(GroupAdmin):
 admin.site.register(Estilo, EstiloAdmin)
 admin.site.register(Ocasion, OcasionAdmin)
 admin.site.register(Outfit, OutfitAdmin)
-admin.site.register(Contacto)
+admin.site.register(Contacto, ContactoAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
