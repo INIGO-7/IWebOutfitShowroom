@@ -18,10 +18,7 @@ class OutfitAdmin(admin.ModelAdmin):
 
     def display_imagen(self, obj):
         if obj.imagen:
-            # Generate the correct static file URL
             imagen_url = static(obj.imagen.url)
-            
-            # Adjust the width and height as needed
             return format_html('<img src="{}" width="50" height="50" />', imagen_url)
         else:
             return 'No Image'
