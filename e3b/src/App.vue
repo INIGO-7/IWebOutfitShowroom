@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-        <h1>Outfit Showroom</h1>
+        <h1>Agenda de contactos</h1>
     </header>
     <main>
       <table class="contact-table">
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+  import db from 'firebase.js'
+  import { collection, addDoc } from 'firebase/firestore'
   export default {
     data() {
       return {
@@ -101,7 +103,8 @@
         }
       },
 
-      saveChanges() {
+      async saveChanges() {
+        const colRef = collection(db, 'contactos')
         this.contacts = JSON.parse(JSON.stringify(this.contactsOnEdit)); // Overwrite existing contacts with the new edited ones
         this.toggleEditingMode();
       },
@@ -167,6 +170,27 @@
     font-size: 32px;
     color: var(--accent-color);
   }
+
+button {
+  background-color: var(--secondary-off-color);
+  color: var(--text-color);
+  font-size: 16px;
+  margin: 4px 2px;
+  padding: 15px 32px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.1s, box-shadow 0.3s;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  background-color: var(--text-color);
+  color: var(--secondary-off-color);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
   
   /*-------------------- HEADER CONTENT --------------------*/
   
@@ -174,58 +198,14 @@
     background-color: var(--secondary-color);
     border-radius: 10px;
     padding: 20px;
-    margin: 20px 20px 20px 20px;
-  }
-  
-  header ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  header li {
-    margin: 0;
-    padding: 0;
-    display: inline;
-    margin-right: 20px;
+    margin: 20px;
   }
   
   header h1 {
     margin: 0;
     padding: 0;
-  }
-  
-  nav a {
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 20px;
-    background-color: var(--secondary-off-color);
-    color: var(--accent-color); /* Color del texto, ajusta según sea necesario */
-  }
-  
-  .language-selector {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  
-  .language-selector form {
-    margin: 0;
-  }
-  
-  
-  .language-selector select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-  }
-  
-  .language-selector img {
-    height: 20px;
-    width: auto;
-    vertical-align: middle;
-    margin-right: 5px;
+    display: flex;
+    justify-content: center;
   }
   
   /*-------------------- MAIN CONTENT --------------------*/
@@ -235,73 +215,6 @@
     padding: 20px;
     margin: 20px;
     border-radius: 5px;
-  }
-  
-  /* homepage content */
-  
-  .imagen-outfit {
-    width: 700px  !important;
-    height: auto;
-  }
-  
-  .initial_title{
-    font-size: 50px;
-    text-align: center;
-  }
-  
-  .first_display{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: italic;
-    font-size: 20px;
-  }
-  
-  .first_display table {
-    height: 100%;
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .first_display tr {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
-  
-  .first_display td {
-    padding-bottom: 50px;
-  }
-  
-  .first_display table img{
-    width: 70vw;
-    min-width: 400px;
-    height: auto;
-  }
-  
-  /* outfits content */
-  
-  .table_container table {
-    width: 80%;
-    margin: auto;
-    border-collapse: collapse;
-  }
-  
-  .table_container th, .table_container td {
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .table_container th {
-    border-bottom: 3px solid var(--border-color);
-  }
-  
-  .table_container tr:nth-child(even) {
-    background-color: var(--secondary-off-color);
   }
   
   /* contacts SPA content */
