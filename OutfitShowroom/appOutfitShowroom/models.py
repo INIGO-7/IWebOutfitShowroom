@@ -42,6 +42,7 @@ class Outfit(models.Model):
     ocasion = models.ForeignKey(Ocasion, on_delete=models.CASCADE)
     estilos = models.ManyToManyField(Estilo)
     precio = models.IntegerField(default=0)
+    autor = models.CharField(max_length=25, blank=True)
     imagen = models.ImageField(upload_to='static/img',blank=True,null=True,verbose_name='Image')
     fecha = models.DateTimeField(auto_now_add=True)
 
