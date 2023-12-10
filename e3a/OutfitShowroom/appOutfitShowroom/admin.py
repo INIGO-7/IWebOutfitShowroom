@@ -4,6 +4,9 @@ from django.utils.html import format_html
 from django.templatetags.static import static
 from django.urls import reverse
 
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
+
 class EstiloAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'nombre_en', 'display_related_outfits')
 
@@ -13,7 +16,6 @@ class EstiloAdmin(admin.ModelAdmin):
     
     def display_related_outfits(self, obj):
         outfits = obj.outfit_set.all()
-        outfit_info = ', '.join([f"{outfit.get_nombre()}" for outfit in outfits])
         outfit_links = [
             format_html('<a href="{}" target="_blank">{}</a>', reverse('admin:appOutfitShowroom_outfit_change', args=[outfit.id]), outfit.get_nombre())
             for outfit in outfits
@@ -31,7 +33,6 @@ class OcasionAdmin(admin.ModelAdmin):
     
     def display_related_outfits(self, obj):
         outfits = obj.outfit_set.all()
-        outfit_info = ', '.join([f"{outfit.get_nombre()}" for outfit in outfits])
         outfit_links = [
             format_html('<a href="{}" target="_blank">{}</a>', reverse('admin:appOutfitShowroom_outfit_change', args=[outfit.id]), outfit.get_nombre())
             for outfit in outfits
@@ -62,8 +63,21 @@ class OutfitAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" width="50" height="50" />', imagen_url)
         else:
             return 'No Image'
+        
+class CustomUserAdmin(UserAdmin):
+    list_display = ('username', 'email', 'first_name', 'last_name', 'grupos', 'is_active', 'is_staff', 'is_superuser', 'date_joined', 'last_login')
+
+    def grupos(self, obj):
+        group_links = [
+            format_html('<a href="{}" target="_blank">{}</a>', reverse('admin:auth_group_change', args=[group.id]), group.name)
+            for group in obj.groups.all()
+        ]
+        return format_html(', '.join(group_links))
 
 admin.site.register(Estilo, EstiloAdmin)
 admin.site.register(Ocasion, OcasionAdmin)
 admin.site.register(Outfit, OutfitAdmin)
 admin.site.register(Contacto)
+
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
