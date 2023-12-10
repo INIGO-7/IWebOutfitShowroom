@@ -62,13 +62,6 @@ class OutfitAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" width="50" height="50" />', imagen_url)
         else:
             return 'No Image'
-        
-class MyAdminSite(admin.AdminSite):
-    site_header = 'My Custom Admin'
-    site_title = 'My Admin Site'
-
-admin_site = MyAdminSite(name='myadmin')
-
 
 admin.site.register(Estilo, EstiloAdmin)
 admin.site.register(Ocasion, OcasionAdmin)
