@@ -4,8 +4,8 @@ from django.utils.html import format_html
 from django.templatetags.static import static
 from django.urls import reverse
 
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from django.contrib.auth.models import User, Group, Permission
 
 class EstiloAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'nombre_en', 'display_related_outfits')
@@ -73,6 +73,26 @@ class CustomUserAdmin(UserAdmin):
             for group in obj.groups.all()
         ]
         return format_html(', '.join(group_links))
+        
+class CustomGroupAdmin(GroupAdmin):
+    list_display = ('name', 'display_users', 'display_permissions')
+
+    def display_users(self, obj):
+        user_links = [
+            format_html('<a href="{}" target="_blank">{}</a>', reverse('admin:auth_user_change', args=[user.id]), user.username)
+            for user in obj.user_set.all()
+        ]
+        return format_html(', '.join(user_links))
+
+    display_users.short_description = 'Miembros'
+
+
+    def display_permissions(self, obj):
+        permissions = obj.permissions.all()
+        return ', '.join([permission.name for permission in permissions])
+
+    display_permissions.short_description = 'Permissions'
+
 
 admin.site.register(Estilo, EstiloAdmin)
 admin.site.register(Ocasion, OcasionAdmin)
@@ -81,3 +101,6 @@ admin.site.register(Contacto)
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+
+admin.site.unregister(Group)
+admin.site.register(Group, CustomGroupAdmin)
