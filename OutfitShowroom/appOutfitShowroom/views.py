@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.views.generic import DetailView, ListView
+
 from .models import Outfit, Estilo, Ocasion, Contacto
 from django.http import HttpResponse, Http404
 from django.db.models import Max
@@ -6,45 +8,50 @@ from django.core.serializers import serialize
 import json
 
 
-def index(request):
+class Index(ListView):
+    model = Outfit
+    template_name = 'index.html'
+    queryset = (
+        Outfit.objects.raw(
+            'SELECT * FROM( SELECT * FROM appOutfitShowroom_Outfit ORDER BY fecha DESC) GROUP BY ocasion_id ')
+    )
 
-	# Obtiene los outfits mas recientemente añadidos por ocasion
-	ultimos_outfits = (
-		Outfit.objects.raw('SELECT * FROM( SELECT * FROM appOutfitShowroom_Outfit ORDER BY fecha DESC) GROUP BY ocasion_id ')
-	)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(Index, self).get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Inicio'
+        return context
 
-	context = {
-		'titulo_pagina': "Inicio",
-		'ultimos_outfits': ultimos_outfits
-	}
-	return render(request, 'index.html', context)
 
-def ocasiones(request):
-	ocasiones = get_list_or_404(Ocasion.objects.all())
+class OcasionListView(ListView):
+    model = Ocasion
+    template_name = 'ocasiones.html'
+    queryset = Ocasion.objects.all()
 
-	context = {
-		'titulo_pagina': "Ocasiones",
-		'ocasiones': ocasiones
-	}
-	return render(request, 'ocasiones.html', context)
+    def get_context_data(self, **kwargs):
+        context = super(OcasionListView, self).get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Ocasiones'
+        return context
 
-def estilos(request):
-	estilos = get_list_or_404(Estilo.objects.all())
 
-	context = {
-		'titulo_pagina': "Estilos",
-		'estilos': estilos
-	}
-	return render(request, 'estilos.html', context)
+class EstiloListView(ListView):
+    model = Estilo
+    template_name = 'estilos.html'
+    queryset = Estilo.objects.all()
 
-def outfits(request):
-	outfits = get_list_or_404(Outfit.objects.all())
+    def get_context_data(self, **kwargs):
+        context = super(EstiloListView, self).get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Estilos'
+        return context
 
-	context = {
-		'titulo_pagina': 'Outfits',
-		'outfits': outfits
-	}
-	return render(request, 'outfits.html', context)
+class OutfitListView(ListView):
+    model = Outfit
+    template_name = 'outfits.html'
+    queryset = Outfit.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(OutfitListView, self).get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Outfit'
+        return context
 
 def contactos(request):
 	contacts = get_list_or_404(Contacto.objects.all())
@@ -61,35 +68,31 @@ def contactos(request):
 
 	return render(request, 'contactos.html', context)
 
-#devuelve los datos de un outfit, ocasion o estilo
+# devuelve los datos de un outfit, ocasion o estilo
 
-def detalle_estilo(request, estilo_id):
-	estilo = get_object_or_404(Estilo, pk=estilo_id)
+class EstiloDetailView(DetailView):
+    model = Estilo
+    template_name = "estilo.html"
 
-	context = {
-		'titulo_pagina': "Detalles del estilo", 
-		'estilo': estilo, 
-		'outfits': estilo.outfit_set.all()
-	}
-	return render(request, 'estilo.html', context)
+    def get_context_data(self, **kwargs):
+        context = super(EstiloDetailView, self).get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Detalles del estilo'
+        return context
 
-def detalle_ocasion(request, ocasion_id):
-	ocasion = get_object_or_404(Ocasion, pk=ocasion_id)
+class OcasionDetailView(DetailView):
+    model = Ocasion
+    template_name = "ocasion.html"
 
-	context = {
-		'titulo_pagina': "Detalles de la ocasión",
-		'ocasion': ocasion,
-		'outfits': ocasion.outfit_set.all()
-	}
-	return render(request, 'ocasion.html', context)
+    def get_context_data(self, **kwargs):
+        context = super(OcasionDetailView, self).get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Detalles de la ocasion'
+        return context
 
-def detalle_outfit(request, outfit_id):
-	outfit = get_object_or_404(Outfit, pk=outfit_id)
-	
-	context = {
-		'titulo_pagina': "Detalles del outfit",
-		'outfit': outfit,
-		'ocasion': outfit.ocasion,
-		'estilos': outfit.estilos.all
-	}
-	return render(request, 'outfit.html', context)
+class OutfitDetailView(DetailView):
+    model = Outfit
+    template_name = "outfit.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(OutfitDetailView, self).get_context_data(**kwargs)
+        context["titulo_pagina"] = 'Detalles del outfit'
+        return context

@@ -3,9 +3,9 @@
 {%load i18n%}
 {% block contenido %}
 <h2>{% trans "Lista de estilos" %}</h2>
-{% if estilos %}
+{% if estilo_list %}
 	<ul>
-	{% for e in estilos %}
+	{% for e in estilo_list %}
 		<li>
 			<a href="{% url 'detalle_estilo' e.id %}">{{ e.get_nombre}}</a>
 		</li>

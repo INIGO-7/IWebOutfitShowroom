@@ -6,9 +6,9 @@
 <h2 class="initial_title" >{% trans "Bienvenidos a OutfitShowRoom!" %}</h2>
 
 <div class="first_display">
-	{% if ultimos_outfits %}
+	{% if outfit_list %}
 	<table>
-		{% for outfit in ultimos_outfits %}
+		{% for outfit in outfit_list %}
 			<tr>
 				<td>
 					<a href="{% url 'detalle_outfit' outfit.id %}">{{ outfit.get_nombre }}</a><br><br>

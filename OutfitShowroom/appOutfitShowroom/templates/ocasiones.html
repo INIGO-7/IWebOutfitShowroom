@@ -3,9 +3,9 @@
 {%load i18n%}
 {% block contenido %}
 <h2>{% trans "Lista de ocasiones" %}</h2>
-{% if ocasiones %}
+{% if ocasion_list %}
 	<ul>
-	{% for o in ocasiones %}
+	{% for o in ocasion_list %}
 		<li>
 		    <a href="{% url 'detalle_ocasion' o.id %}">{{ o.get_nombre}}</a>
 		</li>

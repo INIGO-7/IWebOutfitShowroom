@@ -14,9 +14,9 @@
 	<p>{{ outfit.get_descripcion}}</p>
 
 	<h3>{% trans "Lista de estilos" %}</h3>
-	{% if estilos %}
+	{% if outfit.estilos.all %}
 		<ol>
-		{% for e in estilos %}
+		{% for e in outfit.estilos.all %}
 			<li>
 				<a href="{% url 'detalle_estilo' e.id %}">{{ e.get_nombre}}</a>
 			</li>
@@ -26,8 +26,8 @@
 		<p>{% trans "No tiene estilos asociados." %}</p>
 	{% endif %}
     
-    {% if ocasion %}
-        <h3>{% trans "Ocasión: " %}</h3><a href="{% url 'detalle_ocasion' ocasion.id %}">{{ocasion.get_nombre}}</a>
+    {% if outfit.ocasion %}
+        <h3>{% trans "Ocasión: " %}</h3><a href="{% url 'detalle_ocasion' outfit.ocasion.id %}">{{outfit.ocasion}}</a>
     {% endif %}
 
 {% else %}
