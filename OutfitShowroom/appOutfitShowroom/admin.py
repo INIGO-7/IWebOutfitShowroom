@@ -23,8 +23,22 @@ class EstiloAdmin(admin.ModelAdmin):
     display_related_outfits.short_description = 'Related Outfits'
 
 class OcasionAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'nombre_en')
-    search_fields = ('nombre', 'nombre_en')
+    list_display = ('nombre', 'nombre_en', 'display_related_outfits')
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.prefetch_related('outfit_set')  # Use prefetch_related to fetch related outfits efficiently
+
+    def display_related_outfits(self, obj):
+        outfits = obj.outfit_set.all()
+        outfit_info = ', '.join([f"{outfit.get_nombre()}" for outfit in outfits])
+        outfit_links = [
+            format_html('<a href="{}" target="_blank">{}</a>', reverse('admin:appOutfitShowroom_outfit_change', args=[outfit.id]), outfit.get_nombre())
+            for outfit in outfits
+        ]
+        return format_html(', '.join(outfit_links))
+    
+    display_related_outfits.short_description = 'Related Outfits'
 
 class OutfitAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'fecha', 'precio', 'autor', 'descripcion', 'display_imagen')
