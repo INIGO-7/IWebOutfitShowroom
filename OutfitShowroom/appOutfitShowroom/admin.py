@@ -9,8 +9,8 @@ class EstiloAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.prefetch_related('outfit_set')  # Use prefetch_related to fetch related outfits efficiently
-
+        return queryset.prefetch_related('outfit_set')
+    
     def display_related_outfits(self, obj):
         outfits = obj.outfit_set.all()
         outfit_info = ', '.join([f"{outfit.get_nombre()}" for outfit in outfits])
@@ -27,8 +27,8 @@ class OcasionAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.prefetch_related('outfit_set')  # Use prefetch_related to fetch related outfits efficiently
-
+        return queryset.prefetch_related('outfit_set')
+    
     def display_related_outfits(self, obj):
         outfits = obj.outfit_set.all()
         outfit_info = ', '.join([f"{outfit.get_nombre()}" for outfit in outfits])
