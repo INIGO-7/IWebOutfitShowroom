@@ -1,8 +1,9 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
+//import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection} from "firebase/firestore";
 
-const firebaseConfig = {
+
+export const firebaseApp = initializeApp({
   apiKey: "AIzaSyAXqpyCZ_VVFWzbYtjgZzvG_GgiDVjcLec",
   authDomain: "iweb-e3b.firebaseapp.com",
   projectId: "iweb-e3b",
@@ -10,11 +11,10 @@ const firebaseConfig = {
   messagingSenderId: "817634488968",
   appId: "1:817634488968:web:f20aee7d5dbfd6a5ef653d",
   measurementId: "G-CH9M6Y016T"
-}
+})
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
+// used for the firestore refs
+export const db = getFirestore(firebaseApp)
 
-// Initialize Firestore
-const db = app.getFirestore()
-export default db
+// here we can export reusable database references
+export const contactos_db = collection(db, 'contactos')

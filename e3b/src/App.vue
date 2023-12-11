@@ -64,47 +64,101 @@
 </template>
 
 <script>
-  import db from 'firebase.js'
-  import { collection, addDoc } from 'firebase/firestore'
+
+  import { addDoc, deleteDoc, doc, getDocs} from 'firebase/firestore';
+  import { contactos_db } from './firebase';
+
+  // Function to find the difference between two arrays of contacts
+  function findContactsDifferences(original, edited) {
+    const toAdd = edited.filter(editedContact => 
+      !original.some(originalContact => 
+        originalContact.nombre === editedContact.nombre &&
+        originalContact.apellido === editedContact.apellido &&
+        originalContact.telefono === editedContact.telefono &&
+        originalContact.email === editedContact.email
+      )
+    );
+
+    const toDelete = original.filter(originalContact => 
+      !edited.some(editedContact => 
+        originalContact.nombre === editedContact.nombre &&
+        originalContact.apellido === editedContact.apellido &&
+        originalContact.telefono === editedContact.telefono &&
+        originalContact.email === editedContact.email
+      )
+    );
+
+    return { toAdd, toDelete };
+  }
+ 
   export default {
     data() {
       return {
-        contacts: [
-          {nombre: 'Iñigo', apellido: 'Fernández', telefono: '684983765', email: 'inigofernandez@opendeusto.es'},
-          {nombre: 'Unai', apellido: 'Igartua', telefono: '675903210', email: 'unaiigartua@opendeusto.es'},
-          {nombre: 'Nicolás', apellido: 'Llop', telefono: '619861263', email: 'nicllop@opendeusto.es'},
-          {nombre: 'Jorge', apellido: 'Alcorta', telefono: '621203775', email: 'jorgealcorta@opendeusto.es'}
-        ],
-        contactsOnEdit: [
-          {nombre: 'Iñigo', apellido: 'Fernández', telefono: '684983765', email: 'inigofernandez@opendeusto.es'},
-          {nombre: 'Unai', apellido: 'Igartua', telefono: '675903210', email: 'unaiigartua@opendeusto.es'},
-          {nombre: 'Nicolás', apellido: 'Llop', telefono: '619861263', email: 'nicllop@opendeusto.es'},
-          {nombre: 'Jorge', apellido: 'Alcorta', telefono: '621203775', email: 'jorgealcorta@opendeusto.es'}
-        ],
+        contacts: [],
+        contactsOnEdit: [],
         editing: false,
         newContact: {
-          nombre: '',
-          apellido: '',
-          telefono: '',
-          email: ''
+          nombre: "",
+          apellido: "",
+          telefono: "",
+          email: ""
         }
       };
     },
+
+    async mounted() {
+      try {
+        const querySnapshot = await getDocs(contactos_db);
+        this.contacts = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
+        // deep copy the contacts to OnEdit variable
+        this.contactsOnEdit = JSON.parse(JSON.stringify(this.contacts));
+
+      } catch (error) {
+        console.error("Error fetching documents: ", error);
+      }
+    },
+
     methods: {
     
       addContact() {
         if (this.newContact.nombre && this.newContact.apellido && this.newContact.telefono && this.newContact.email) {
-          // All fields are filled, add the contact
+          
           this.contactsOnEdit.push(Object.assign({}, this.newContact));
-          this.newContact = { nombre: '', apellido: '', telefono: '', email: '' }; // Reset the new contact
+          this.newContact = { nombre: "", apellido: "", telefono: "", email: "" }; // Reset the new contact
+
         } else {
-          // Not all fields are filled, show an error message or alert
           alert("Please fill in all fields.");
         }
       },
 
       async saveChanges() {
-        const colRef = collection(db, 'contactos')
+        const { toAdd, toDelete } = findContactsDifferences(this.contacts, this.contactsOnEdit);
+        
+        // Add new contacts to Firestore
+        try {
+          for (const contact of toAdd) {
+            await addDoc(contactos_db, contact); // Assumes contactos_db is a reference to your collection
+          }
+        } catch (error) {
+          console.error("Error adding documents: ", error);
+        }
+
+        // Delete contacts from Firestore
+        try {
+          for (const contact of toDelete) {
+            if (contact.id) {
+              const docRef = doc(contactos_db, contact.id);
+              await deleteDoc(docRef);
+            }
+          }
+        } catch (error) {
+          console.error("Error deleting documents: ", error);
+        }
+        
         this.contacts = JSON.parse(JSON.stringify(this.contactsOnEdit)); // Overwrite existing contacts with the new edited ones
         this.toggleEditingMode();
       },
