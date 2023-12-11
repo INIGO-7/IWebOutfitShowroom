@@ -268,6 +268,7 @@ button:hover {
     background-color: var(--secondary-color);
     padding: 20px;
     margin: 20px;
+    margin-bottom: 100px;
     border-radius: 5px;
   }
   
